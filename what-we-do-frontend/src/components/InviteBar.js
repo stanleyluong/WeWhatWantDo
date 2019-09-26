@@ -12,6 +12,8 @@ export default class InviteBar extends Component{
     }
 
     foundUsers = () => {
+        console.log("backend url", this.props.BackendURL)
+        console.log(this.props.BackendURL+'/users/search')
         fetch(this.props.BackendURL+'/users/search',{
             method:"POST",
             headers:{
