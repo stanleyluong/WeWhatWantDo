@@ -44,7 +44,8 @@ export default class InviteBar extends Component{
     }
 
     handleButton = (e) => {
-        this.props.return(e.target.value)
+        e.preventDefault()
+        this.props.returnUser(e.target.value)
     }
 
     render(){

@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import './App.css';
 import UserNameBar from './components/usernameBar'
 import InviteBar from './components/InviteBar';
+import GroupContainer from './containers/GroupContainer'
 
 class App extends Component{
   constructor(){
@@ -31,6 +32,7 @@ class App extends Component{
     <div className="App">
       <UserNameBar BackendURL={this.props.BackendURL}/>
       <InviteBar BackendURL={this.props.BackendURL}/>
+      <GroupContainer />
     </div>
     )
   }
