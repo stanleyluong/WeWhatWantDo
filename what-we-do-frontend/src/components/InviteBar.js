@@ -12,9 +12,7 @@ export default class InviteBar extends Component{
     }
 
     foundUsers = () => {
-        console.log("backend url", this.props.BackendURL)
-        console.log(this.props.BackendURL+'/users/search')
-        fetch(this.props.BackendURL+'/users/search',{
+        fetch(this.props.BackendURL+'/usersearch',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json',
@@ -24,6 +22,7 @@ export default class InviteBar extends Component{
                 search: this.state.search
             })
         })
+        .then(console.log)
     }
 
     render(){

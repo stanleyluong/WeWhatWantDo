@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    skip_before_action :verify_authenticity_token, if: :json_request?
 
     def index
         render :json => User.all
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
     end
 
     def search
-        byebug
+        # byebug
         @users = User.searchByName(params[:search])
         render :json => @users
     end
@@ -37,6 +38,12 @@ class UsersController < ApplicationController
     
     def user_params
         params.require(:user).permit(:username)
+    end
+
+    protected
+
+    def json_request? 
+        return request.format.json?
     end
 end
 
