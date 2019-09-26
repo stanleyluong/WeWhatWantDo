@@ -12,17 +12,19 @@ export default class InviteBar extends Component{
     }
 
     foundUsers = () => {
-        fetch(this.props.BackendURL+'/usersearch',{
-            method:"POST",
-            headers:{
-                'Content-Type':'application/json',
-                'Accept':'application/json'
-            },
-            body: JSON.stringify({
-                search: this.state.search
+        if (this.state.search.length > 0){
+            fetch(this.props.BackendURL+'/usersearch',{
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                body: JSON.stringify({
+                    search: this.state.search
+                })
             })
-        })
-        .then(console.log)
+            .then(console.log)
+        }
     }
 
     render(){
