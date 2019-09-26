@@ -31,8 +31,8 @@ class App extends Component{
     return (
     <div className="App">
       <UserNameBar BackendURL={this.props.BackendURL}/>
-      <InviteBar BackendURL={this.props.BackendURL}/>
-      <GroupContainer />
+      
+      <GroupContainer BackendURL={this.props.BackendURL}/>
     </div>
     )
   }

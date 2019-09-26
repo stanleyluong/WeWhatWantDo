@@ -8,7 +8,7 @@ class GroupContainer extends Component{
     render() {
         return(
             <div>
-                <GroupViewer />
+                <GroupViewer BackendURL={this.props.BackendURL}/>
                 <GroupSelector />                              
             </div>
             

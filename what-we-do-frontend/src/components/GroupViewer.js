@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InviteBar from './InviteBar'
 
 class GroupViewer extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class GroupViewer extends Component {
 
   render() {
     return <div>
-        {console.log("test")}
+        <InviteBar BackendURL={this.props.BackendURL}/>
     </div>;
   }
 }
