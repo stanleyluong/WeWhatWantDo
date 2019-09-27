@@ -8,9 +8,10 @@ class User < ApplicationRecord
 
     def User.searchByName(string)
         # byebug
+        string = string.downcase
         users = User.all
         return users.select do |user|
-            user.username.include? (string)
+            user.username.downcase.include? (string)
         end
     end
 

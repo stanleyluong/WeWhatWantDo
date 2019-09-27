@@ -10,11 +10,18 @@ class UsersController < ApplicationController
         render :json => @user
     end
 
+    def getGroups
+        @user = User.find(params[:userID])        
+        @groups = @user.groups
+        byebug
+        render json: @groups.to_json#{groups: @groups}.to_json
+    end
+
     def login
-        # byebug
-        @username = params[:username]
-        @user = User.find_by(username: @username)
-        render :json => @user
+        # params[:username] = 'eve'
+        @username = params[:username].downcase
+        @user = User.where('lower(username) = ?', @username).first
+        render json: @user
     end
 
     def create
