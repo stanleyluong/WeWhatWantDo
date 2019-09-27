@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     def getGroups
         @user = User.find(params[:userID])        
         @groups = @user.groups
-        byebug
+        # byebug
         render json: @groups.to_json#{groups: @groups}.to_json
     end
 
