@@ -11,17 +11,17 @@ class UsersController < ApplicationController
     end
 
     def getGroups
-        @user = User.find(session[:current_user_id])
+        @user = User.find(params[:userID])        
         @groups = @user.groups
+        byebug
         render json: @groups.to_json#{groups: @groups}.to_json
     end
 
     def login
-        # byebug
+        # params[:username] = 'eve'
         @username = params[:username].downcase
         @user = User.where('lower(username) = ?', @username).first
-        session[:current_user_id] = @user.id
-        render :json => @user
+        render json: @user
     end
 
     def create

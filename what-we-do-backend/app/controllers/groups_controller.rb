@@ -28,10 +28,10 @@ class GroupsController < ApplicationController
    
     private
 
-    def grab_group
-        @user = User.find(session[:current_user_id])
-        @group = Group.find(params[:id])
-    end
+    # def grab_group
+    #     @user = User.find(session[:current_user_id])
+    #     @group = Group.find(params[:id])
+    # end
 
     def group_params
         params.require(:group).permit(:title)

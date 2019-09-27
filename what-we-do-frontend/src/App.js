@@ -23,11 +23,14 @@ class App extends Component{
       body: JSON.stringify({
         username: userName
       })
-    }).then (response => response.json())
-    .then(data => this.setState({
-      currentUser: data}))
-    }
-  
+    })
+    .then (response => response.json())
+    .then(data => {
+      sessionStorage.setItem('current_user_id',data.id);
+      this.setState({currentUser: data})
+      // .catch(err=>console.log(err))
+    })
+  }
 
 
 
@@ -38,7 +41,8 @@ class App extends Component{
       {console.log(this.state)}
       <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>
       
-      <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/>
+
+      {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>SUFFER FOOLS</p>}
     </div>
     )
   }

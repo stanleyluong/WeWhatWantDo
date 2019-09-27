@@ -7,15 +7,26 @@ import GroupSelector from '../components/GroupSelector'
 class GroupContainer extends Component{
     constructor(props){
         super(props)
-        this.state = {currentGroup: null}
+        this.state = {currentGroup: null, allGroups: []}
     }
 
     getGroups = () => {
-        let url = "http://localhost:3000/user-groups"
-        fetch(url)
+        console.log('backend', this.props.BackendURL)
+        let url = this.props.BackendURL + "/user-groups"
+        console.log('url', url)
+        fetch(url,{
+            method: 'POST',
+            headers: {
+                "Content-Type":"application/json",
+                "Accept":"application/json"
+            },
+            body: JSON.stringify({
+                userID: sessionStorage.getItem('current_user_id')
+            })
+        })
         .then(response => response.json())
         .then(groups => this.setState({
-            allGroups: groups.map(group=>({...group, title: null}))
+            allGroups: groups
         }))
     }
 
@@ -33,8 +44,9 @@ class GroupContainer extends Component{
     render() {
         return(
             <div>
+                <h1>Group Container</h1>
                 <GroupViewer BackendURL={this.props.BackendURL} currentGroup={this.state.currentGroup}/>
-                <GroupSelector currentGroup={this.state.currentGroup} onSelectGroup={this.setCurrentGroup}/>                              
+                <GroupSelector currentGroup={this.state.currentGroup} onSelectGroup={this.setCurrentGroup} groups={this.state.allGroups}/>                              
             </div>
             
         )

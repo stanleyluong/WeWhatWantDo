@@ -9,6 +9,7 @@ class GroupViewer extends Component {
 
   render() {
     return <div>
+        <h3>GroupViewer</h3>
         <InviteBar BackendURL={this.props.BackendURL}/>
         <CheckboxToggle />
 

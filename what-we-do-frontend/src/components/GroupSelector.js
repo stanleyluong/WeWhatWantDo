@@ -6,6 +6,7 @@ class GroupSelector extends Component {
   }
 
   listGroups = () => {
+    console.log('props in GroupSelector', this.props)
     this.props.groups.map(group => {
       return <li>
         <button onClick={this.handleClick} className="groups" value={JSON.stringify(group)} >{group.title}</button>
@@ -20,6 +21,7 @@ class GroupSelector extends Component {
   render() {
     return (
       <div>
+        <h3>GroupSelector</h3>
         <ul>{this.listGroups()}</ul>
       </div>
     )
