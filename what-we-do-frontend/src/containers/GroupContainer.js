@@ -5,7 +5,7 @@ import GroupSelector from '../components/GroupSelector'
 class GroupContainer extends Component{
     constructor(props){
         super(props)
-        this.state = {currentGroup: nil}
+        this.state = {currentGroup: null}
     }
 
     render() {

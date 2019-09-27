@@ -2,7 +2,7 @@ class Group < ApplicationRecord
     has_many :invites
     has_many :users, through: :invites
 
-    def suggestions
+    def getSuggestions(type=['movies'])
         #sample content from each user and throw it into function
         #run fetch and return output of fetch statement
         query = []
@@ -10,14 +10,10 @@ class Group < ApplicationRecord
             query << user.likes.sample(3)
         end
         query = query.flatten
-        type = []
-        query.each do |like| 
-            type << like.type
-        end
-        type = type.flatten
+        
         type.uniq
         
-        fetch(query,type)
+        return fetch(query,type)
     end
 
     # https://tastedive.com/api/similar?q=eminem%2C+pulp+fiction
@@ -26,7 +22,8 @@ class Group < ApplicationRecord
     def fetch(query, type)
         url = 'https://tastedive.com/api/similar?k=346710-BrittanF-PHC42GKW&q='+query+type
         response = RestClient.get(url)
-        $parsed_response = JSON.parse(response)
+        @parsed_response = JSON.parse(response)
+        return @parsed_response
     end
 
     def translator(array)
