@@ -11,18 +11,23 @@ class App extends Component{
     this.state = {currentUser: null}
   }
 
-  signIn = userName => {
-    fetch(this.props.BackendURL+'/signin', {
+  logIn = userName => {
+    console.log("backend url", this.props.BackendURL)
+    console.log("full url", this.props.BackendURL+'/login')
+    fetch(this.props.BackendURL+'/login', {
       method: 'POST',
       headers: {
         "Content-Type":"application/json",
-        "Accpet":"application/json"
+        "Accept":"application/json"
       },
       body: JSON.stringify({
         username: userName
       })
-    })
-  }
+    }).then (response => response.json())
+    .then(data => this.setState({
+      currentUser: data}))
+    }
+  
 
 
 
@@ -30,9 +35,10 @@ class App extends Component{
   render() {
     return (
     <div className="App">
-      <UserNameBar BackendURL={this.props.BackendURL}/>
+      {console.log(this.state)}
+      <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>
       
-      <GroupContainer BackendURL={this.props.BackendURL}/>
+      <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/>
     </div>
     )
   }
