@@ -4,10 +4,10 @@ class User < ApplicationRecord
     has_many :invites
     has_many :groups, through: :invites
 
-
     #give method to return sample so dont hit same thing multiple times. 
 
     def User.searchByName(string)
+        # byebug
         users = User.all
         return users.select do |user|
             user.username.include? (string)
