@@ -21,7 +21,7 @@ class GroupContainer extends Component{
                 "Accept":"application/json"
             },
             body: JSON.stringify({
-                userID: sessionStorage.getItem('current_user_id')
+                userID: JSON.parse(sessionStorage.getItem('current_user')).id
             })
         })
         .then(response => response.json())

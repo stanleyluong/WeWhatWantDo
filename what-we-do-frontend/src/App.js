@@ -25,7 +25,7 @@ class App extends Component{
     })
     .then (response => response.json())
     .then(data => {
-      sessionStorage.setItem('current_user_id',data.id);
+      sessionStorage.setItem('current_user',JSON.stringify(data));
       this.setState({currentUser: data})
       // .catch(err=>console.log(err))
     })
