@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :media
   resources :groups
   resources :users
-  get '/login', to: 'users#login'
+  post '/login', to: 'users#login'
   post '/usersearch', to: 'users#search'
   get '/user-groups', to: 'users#groups'
   post '/groups/:id/suggest', to: 'groups#suggest'

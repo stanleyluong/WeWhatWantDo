@@ -31,7 +31,7 @@ export default class InviteBar extends Component{
     makeUserList = (json) => {
         if (json.length > 0 && this.state.search.length > 0){
             let list = json.map(element => {
-                return <li><button value={element} onClick={this.handleButton}>{element.username}</button></li>
+                return <li><button value={JSON.stringify(element)} onClick={this.handleButton}>{element.username}</button></li>
             });
             let renderList = (
             <ul>
@@ -45,7 +45,7 @@ export default class InviteBar extends Component{
 
     handleButton = (e) => {
         e.preventDefault()
-        this.props.returnUser(e.target.value)
+        console.log('e.target.value', e.target.value)// this.props.returnUser(e.target.value)
     }
 
     render(){
