@@ -39,6 +39,8 @@ class GroupContainer extends Component{
             currentGroup: selectedGroup
         })
         console.log(selectedGroup)
+        console.log("current group", this.state.currentGroup)
+        
     }
 
     render() {
