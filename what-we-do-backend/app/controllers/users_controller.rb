@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:userID])        
         @groups = @user.groups
         # byebug
-        render json: @groups.to_json#{groups: @groups}.to_json
+        render json: @groups
     end
 
     def login
