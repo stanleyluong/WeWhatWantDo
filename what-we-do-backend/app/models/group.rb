@@ -1,32 +1,54 @@
+# require 'rest-client'
+require 'net/http'
+require 'uri'
 class Group < ApplicationRecord
     has_many :invites
     has_many :users, through: :invites
 
     def getSuggestions(type=['movies'])
+        
+        if (type == nil)
+            type = ['movies']
+        end
         #sample content from each user and throw it into function
         #run fetch and return output of fetch statement
         query = []
-        type = []
+
         self.users.each do |user|
-            query << user.likes.sample(3)
+            query << user.contents.sample(3).map do |content| content.title end
         end
+
         query = query.flatten
-        
-        type.uniq
-        
-        return fetch(query,type)
+        fetchResults = fetch(query,type)
+        return fetchResults
     end
 
     # https://tastedive.com/api/similar?q=eminem%2C+pulp+fiction
 
     # https://tastedive.com/api/similar?k=346710-BrittanF-PHC42GKW&q=dark+crystal%2C+labyrinth&type=movies%2C+shows&verbose=1&limit=20
     def fetch(query, type)
-        url = 'https://tastedive.com/api/similar?k=346710-BrittanF-PHC42GKW&q='+query+type
-        response = RestClient.get(url)
-        @parsed_response = JSON.parse(response)
+        url = makeUrl(query, type)
+        # byebug
+        # response = RestClient.get(url)
+        uri = URI(url)
+        response = Net::HTTP.get_response(uri)
+        @parsed_response = JSON.parse(response.body)
         return @parsed_response
     end
-    def translator(array)
+
+
+    def makeUrl(query, type)
+        key = '346710-BrittanF-PHC42GKW'
+        url = "https://tastedive.com/api/similar?k=#{key}&q="+translator(query)+"&type="+translator(type)
+        return url
+    end
+
+    # def fetch(url)
+    #     response = RestClient.get(url)
+    #     $parsed_response = JSON.parse(response)
+    # end
+
+    def translator(array)  
         array.map! do |string| 
             if  string != array[-1] then
                 string = string.split(" ")
@@ -40,16 +62,8 @@ class Group < ApplicationRecord
                 end
             end
         end
-        array = array.flatten.join("")
-    end
-    def makeUrl(query, type)
-        key = '346710-BrittanF-PHC42GKW'
-        url = "https://tastedive.com/api/similar?k=#{key}&q="+translator(query)+"&type="+translator(type)
-        fetch(url)
-    end
-    def fetch(url)
-        response = RestClient.get(url)
-        $parsed_response = JSON.parse(response)
+        array = array.flatten.join('')
+        return array
     end
 end
 # query = ['red hot chili peppers','pulp fiction','burger king', "dark crystal","labyrinth"]
