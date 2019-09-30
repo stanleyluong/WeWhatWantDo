@@ -51,6 +51,7 @@ export default class InviteBar extends Component{
     render(){
         return(
             <form>
+                <h2>Invite Bar</h2>
                 <label>Search Users:</label>
                 <input type='text' value={this.state.search}
                     onChange={e=>this.upDateSearch(e)}/>
