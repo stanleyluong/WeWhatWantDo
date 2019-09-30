@@ -40,7 +40,7 @@ class App extends Component{
       {console.log(this.state)}
       <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>
       
-
+      {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
       {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>SUFFER FOOLS</p>}
     </div>
     )
