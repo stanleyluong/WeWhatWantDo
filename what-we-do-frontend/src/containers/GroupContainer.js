@@ -40,7 +40,6 @@ class GroupContainer extends Component{
         })
         console.log(selectedGroup)
         console.log("current group", this.state.currentGroup)
-        
     }
 
     render() {
@@ -50,7 +49,6 @@ class GroupContainer extends Component{
                 <GroupViewer BackendURL={this.props.BackendURL} currentGroup={this.state.currentGroup}/>
                 <GroupSelector currentGroup={this.state.currentGroup} onSelectGroup={this.setCurrentGroup} groups={this.state.allGroups}/>                              
             </div>
-            
         )
     }
 
