@@ -22,7 +22,8 @@ export default class SuggestionForm extends Component {
       fetch(this.props.BackendURL+`/groups/${this.props.currentGroup.id}/suggest`, {
           method: "POST",
           headers:{
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
           },
           body: JSON.stringify({
             type: "movie",
