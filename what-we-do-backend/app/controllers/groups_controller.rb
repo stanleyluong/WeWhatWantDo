@@ -4,7 +4,8 @@ class GroupsController < ApplicationController
 
     def show
         if (@user.groups.include?(@group))
-            render :json => @group
+            # byebug
+            render json: @group
         else
             byebug
         end
