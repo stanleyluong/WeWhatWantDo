@@ -25,6 +25,13 @@ class ContentsController < ApplicationController
         render json: @contents
     end
 
+    def add
+        Content.add(params[:userID],params[:title])
+    end
+
+    def remove
+        Content.add(params[:userID],params[:title])
+    end
 
     protected
 

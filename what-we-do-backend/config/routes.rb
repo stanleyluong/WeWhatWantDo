@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   post '/user-groups', to: 'groups#getGroups'
   post '/user-content', to: 'contents#getContent'
   post '/groups/:id/suggest', to: 'groups#suggest'
+  post '/add-content', to: 'content#add'
+  post '/remove-content', to: 'content#remove'
   #For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
