@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :users
   post '/login', to: 'users#login'
   post '/usersearch', to: 'users#search'
-  post '/user-groups', to: 'users#getGroups'
+  post '/user-groups', to: 'groups#getGroups'
+  post '/user-content', to: 'contents#getContent'
   post '/groups/:id/suggest', to: 'groups#suggest'
   #For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

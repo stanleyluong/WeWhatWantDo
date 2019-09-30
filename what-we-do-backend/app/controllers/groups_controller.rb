@@ -22,6 +22,13 @@ class GroupsController < ApplicationController
         end
     end
 
+    def getGroups
+        @user = User.find(params[:userID])        
+        @groups = @user.groups
+        # byebug
+        render json: @groups
+    end
+
     def suggest
         @suggestions = @group.getSuggestions(params[:types])
         render :json => @suggestions

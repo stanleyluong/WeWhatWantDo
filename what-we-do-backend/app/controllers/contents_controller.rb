@@ -15,7 +15,12 @@ class ContentsController < ApplicationController
             @content.users = @content.users.uniq
             @content.save
         }
+    end
 
 
+    def getContent
+        @user = User.find(params[:userID])        
+        @contents = @user.contents
+        render json: @contents
     end
 end

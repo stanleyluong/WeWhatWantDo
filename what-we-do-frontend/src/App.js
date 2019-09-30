@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import './App.css';
 import UserNameBar from './components/usernameBar'
 import GroupContainer from './containers/GroupContainer'
+import ContentContainer from './containers/ContentContainer'
 
 class App extends Component{
   constructor(){
