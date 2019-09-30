@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-    before_action: grab_group, except: :create
+    skip_before_action :verify_authenticity_token, if: :json_request?
+    before_action :grab_group, except: [:create, :getGroups]
 
 
     def show
@@ -45,4 +46,9 @@ class GroupsController < ApplicationController
         params.require(:group).permit(:title)
     end
 
+    protected
+
+    def json_request? 
+        return request.format.json?
+    end
 end

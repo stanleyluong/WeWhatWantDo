@@ -1,4 +1,5 @@
 class ContentsController < ApplicationController
+    skip_before_action :verify_authenticity_token, if: :json_request?
 
     def index
         
@@ -22,5 +23,12 @@ class ContentsController < ApplicationController
         @user = User.find(params[:userID])        
         @contents = @user.contents
         render json: @contents
+    end
+
+
+    protected
+
+    def json_request? 
+        return request.format.json?
     end
 end
