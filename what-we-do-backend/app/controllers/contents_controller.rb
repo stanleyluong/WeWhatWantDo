@@ -9,13 +9,13 @@ class ContentsController < ApplicationController
         @title = params[:content][:title]
         @content = Content.find_or_create_by(title: @title)
 
-        if(!!params[:content][:users][0]){
+        if(!!params[:content][:users][0])
             @user = params[:content][:users][0]
             # VERY BAD PRACTICE, FIX LATER
             @content.users << @user
             @content.users = @content.users.uniq
             @content.save
-        }
+        end
     end
 
 
@@ -26,11 +26,11 @@ class ContentsController < ApplicationController
     end
 
     def add
-        Content.add(params[:userID],params[:title])
+        Content.addContent(params[:userID],params[:title])
     end
 
     def remove
-        Content.add(params[:userID],params[:title])
+        Content.removeContent(params[:userID],params[:content_id])
     end
 
     protected
