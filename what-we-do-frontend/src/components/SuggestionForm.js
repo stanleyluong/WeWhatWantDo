@@ -1,131 +1,100 @@
-
-import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import React, { Component } from "react";
+import { Form } from "semantic-ui-react";
 
 export default class SuggestionForm extends Component {
   state = {
-      type: null,
-      suggestion: null
-  }
+    type: null,
+    suggestion: []
+  };
 
   handleChange = (e, { value }) => {
-      this.setState({ type: value })
-      console.log(this.state)
-  }
-  
-//   handleChange = (e, { newValue }) => this.setState(async prevState => {
-//     console.log(this.state)
-//     debugger
-//     return {value: [...prevState, newValue ]}})
+    this.setState({ type: value });
+    console.log(this.state);
+  };
+
+  //   handleChange = (e, { newValue }) => this.setState(async prevState => {
+  //     console.log(this.state)
+  //     debugger
+  //     return {value: [...prevState, newValue ]}})
 
   getGroupSuggestion = () => {
-      fetch(this.props.BackendURL+`/groups/${this.props.currentGroup.id}/suggest`, {
-          method: "POST",
-          headers:{
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            type: "movie",
-            userID: JSON.parse(sessionStorage.getItem('current_user')).id
-          })
-      }).then(res => res.json())
-      .then(data => console.log(data))
-      
-  }
+    fetch(
+      this.props.BackendURL + `/groups/${this.props.currentGroup.id}/suggest`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          type: `${this.state.type}`,
+          userID: JSON.parse(sessionStorage.getItem("current_user")).id
+        })
+      }
+    )
+      .then(res => res.json())
+      .then(async data => {
+        console.log("suggestion", data.slice(0, 3));
+        this.setState({
+          suggestion: data.slice(0, 3)
+        });
+      })
+      .then(async () => console.log("test", this.state));
+  };
 
   render() {
-    const { value } = this.state
+    const { value } = this.state;
     return (
       <Form>
-        
-        <Form.Group inline widths='equal'>
+        <Form.Group inline widths="equal">
           <label>Media type:</label>
           <Form.Checkbox
-            label='Movies'
-            value='movies'
-            checked={value === 'movies'}
+            label="Movies"
+            value="movie"
+            checked={value === "movies"}
             onChange={this.handleChange}
           />
           <Form.Checkbox
-            label='TV Shows'
-            value='shows'
-            checked={value === 'shows'}
+            label="TV Shows"
+            value="show"
+            checked={value === "shows"}
             onChange={this.handleChange}
           />
           <Form.Checkbox
-            label='Books'
-            value='books'
-            checked={value === 'books'}
+            label="Books"
+            value="book"
+            checked={value === "books"}
             onChange={this.handleChange}
           />
           <Form.Checkbox
-            label='Authors'
-            value='authors'
-            checked={value === 'authors'}
+            label="Authors"
+            value="author"
+            checked={value === "authors"}
             onChange={this.handleChange}
           />
           <Form.Checkbox
-            label='Music'
-            value='music'
-            checked={value === 'music'}
+            label="Music"
+            value="music"
+            checked={value === "music"}
             onChange={this.handleChange}
           />
           <Form.Checkbox
-            label='Games'
-            value='games'
-            checked={value === 'games'}
+            label="Games"
+            value="game"
+            checked={value === "games"}
             onChange={this.handleChange}
           />
           <Form.Checkbox
-            label='Podcasts'
-            value='podcasts'
-            checked={value === 'podcasts'}
+            label="Podcasts"
+            value="podcast"
+            checked={value === "podcasts"}
             onChange={this.handleChange}
           />
         </Form.Group>
-        <Form.Button onClick={() => this.getGroupSuggestion()}>Get Group Suggestion!</Form.Button>
+        <Form.Button onClick={() => this.getGroupSuggestion()}>
+          Get Group Suggestion!
+        </Form.Button>
       </Form>
-    )
+    );
   }
 }
-
-
-// import React, { Component } from 'react'
-
-
-
-// export default class SuggestionForm extends Component {
-//     constructor(){
-//     super()
-
-//     this.state = {
-
-//     }
-// }
-
-
-// render(){
-//     return (
-
-// <form class="ui form">
-//   <div class="field">
-//     <label>Media Type</label>
-//     <select multiple="" class="ui dropdown">
-//       <option value="">Select Media Type</option>
-//       <option value="movies">Movies</option>
-//       <option value="shows">TV Shows</option>
-//       <option value="books">Books</option>
-//       <option value="authors">Authors</option>
-//       <option value="music">Music</option>
-//       <option value="games">Games</option>
-//       <option value="podcasts">Podcasts</option>
-
-
-//     </select>
-//   </div>
-// </form>
-//     )}
-
-
-//     }
