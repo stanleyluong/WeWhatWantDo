@@ -10,7 +10,6 @@ class GroupViewer extends Component {
 
   listGroupMembers = () => {
       if (this.props.currentGroup){
-    console.log('props in GroupViewer', this.props.currentGroup)
     // debugger
 
     return this.props.currentGroup.users.map(member => {

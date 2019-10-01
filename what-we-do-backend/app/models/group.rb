@@ -39,7 +39,7 @@ class Group < ApplicationRecord
 
     def makeUrl(query, type)
         key = '346710-BrittanF-PHC42GKW'
-        url = "https://tastedive.com/api/similar?k=#{key}&q="+translator(query)+"&type="+translator(type)
+        url = "https://tastedive.com/api/similar?k=#{key}&q="+translator(query)+"&type="+translator(type)+"&verbose=1"
         return url
     end
 
