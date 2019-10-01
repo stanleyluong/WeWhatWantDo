@@ -25,3 +25,23 @@
   height: auto;
   width: 700px;
 }
+
+.suggestionContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+.suggestionContainer > div {
+  flex: 1; 
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  margin-left: 35px;
+  margin-right: 35px
+
+  
+
+
+
+}

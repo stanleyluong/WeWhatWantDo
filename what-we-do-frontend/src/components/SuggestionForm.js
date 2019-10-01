@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
 import SuggestionCard from "./SuggestionCard";
-import EmbededVid from "./EmbededVid"
 
 export default class SuggestionForm extends Component {
   state = {
@@ -31,7 +30,7 @@ export default class SuggestionForm extends Component {
       .then(res => res.json())
       .then(async data => {
         this.setState({
-          suggestion: data.slice(0, 3)
+          suggestion: data.slice(0, 4)
         });
       })
   };
@@ -40,9 +39,7 @@ export default class SuggestionForm extends Component {
     if (this.state.suggestion.length !== 0) {
       return this.state.suggestion.map((item, index) => (
           <div>
-              <h2>Suggestions</h2>      
          <SuggestionCard
-          title={item.name}
           key={index}
           itemData={item}
         />
@@ -107,7 +104,7 @@ export default class SuggestionForm extends Component {
           </Form.Button>
         </Form>
 
-        <div>{this.generateSuggestionCards()}</div>
+        <div class="suggestionContainer">{this.generateSuggestionCards()}</div>
       </div>
     );
   }
