@@ -13,12 +13,12 @@ class GroupsController < ApplicationController
     end
 
     def create
+        byebug
         @group = Group.new(group_params)
         if @group.save
-            @user.groups << @group 
+            @group.users << User.find(params[:userID])
             render :json => @group
         else
-            byebug
         end
     end
 

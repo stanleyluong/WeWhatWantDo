@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class GroupSelector extends Component {
   constructor(props) {
     super(props);
+    this.state = {groupName: ''}
   }
 
   listGroups = () => {
@@ -19,11 +20,40 @@ class GroupSelector extends Component {
     
   }
 
+  onAddGroup = (event) => {
+    event.preventDefault()
+    if (this.state.groupName === ''){
+      alert("Group must have a name!")
+      return
+    }
+
+    fetch(this.props.BackendURL+'/groups',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+          userID: [JSON.parse(sessionStorage.getItem('current_user')).id],
+        group:{
+          title: this.state.groupName
+        }
+      })
+    })
+    .then(waitForIt => {this.props.onAddGroup()})
+    .then(waitForIt => {this.setState({groupName: ''})})
+  }
+
   render() {
     return (
       <div>
         <h3>GroupSelector</h3>
         {this.listGroups()}
+        <form onSubmit={this.onAddGroup}>
+          <label>New Group</label>
+          <input type='text' onChange={(e)=>{this.setState({groupName: e.target.value})}} value={this.state.groupName}/>
+          <input type='submit'/>
+        </form>
       </div>
     )
   }

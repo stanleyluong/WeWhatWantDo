@@ -34,6 +34,13 @@ class GroupContainer extends Component{
         this.getGroups()
     }
 
+    onAddGroup = async () => {
+        let waiting = await this.getGroups()
+        if (waiting) {}
+        this.setCurrentGroup(this.state.allGroups[this.state.allGroups.length-1]) 
+        
+    }
+
     setCurrentGroup = (selectedGroup) => {
         this.setState({
             currentGroup: selectedGroup
@@ -47,7 +54,7 @@ class GroupContainer extends Component{
             <div>
                 <h1>Group Container</h1>
                 <GroupViewer BackendURL={this.props.BackendURL} currentGroup={this.state.currentGroup}/>
-                <GroupSelector currentGroup={this.state.currentGroup} onSelectGroup={this.setCurrentGroup} groups={this.state.allGroups}/>                              
+                <GroupSelector currentGroup={this.state.currentGroup} onSelectGroup={this.setCurrentGroup} groups={this.state.allGroups} onAddGroup={this.onAddGroup} BackendURL={this.props.BackendURL}/>                              
             </div>
         )
     }
