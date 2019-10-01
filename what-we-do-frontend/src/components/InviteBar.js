@@ -29,13 +29,23 @@ export default class InviteBar extends Component{
     }
 
     makeUserList = (json) => {
-        if (json.length > 0 && this.state.search.length > 0){
-            let list = json.map(element => {
-                return <li><button value={JSON.stringify(element)} onClick={this.handleButton}>{element.username}</button></li>
+        if (!!json.users && this.state.search.length > 0){
+            
+            let list = json.users.filter(element => {
+                let keep = true
+                this.props.currentGroup.users.forEach(user => {
+                    if (user.id === element.id){
+                        keep = false
+                    }
+                });
+                return keep
+            })
+
+            list = list.map(element => {
+                return <li><button value={JSON.stringify(element)} onClick={this.handleButton} key={element.username}>{element.username}</button></li>
             });
             let renderList = (
             <ul>
-                <li>A list</li>
                 {list}
             </ul>
             )
@@ -46,7 +56,21 @@ export default class InviteBar extends Component{
     handleButton = (e) => {
         e.preventDefault()
         console.log('e.target.value', e.target.value)// this.props.returnUser(e.target.value)
+        // debugger
+        fetch(this.props.BackendURL+`/groups/${this.props.currentGroup.id}/invite`,{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json',
+                'Accept':'application/json'
+            },
+            body: JSON.stringify({
+                userID: JSON.parse(sessionStorage.getItem('current_user')).id,
+                inviteeID: JSON.parse(e.target.value).id
+            })
+        })
+        .then(async () =>{ this.props.refreshGroups()} )
     }
+
 
     render(){
         return(

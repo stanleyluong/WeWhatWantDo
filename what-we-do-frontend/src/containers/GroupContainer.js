@@ -10,11 +10,10 @@ class GroupContainer extends Component{
         this.state = {currentGroup: null, allGroups: []}
     }
 
-    getGroups = () => {
-        console.log('backend', this.props.BackendURL)
+    getGroups = async () =>{
         let url = this.props.BackendURL + "/user-groups"
-        console.log('url', url)
-        fetch(url,{
+        
+        return fetch(url,{
             method: 'POST',
             headers: {
                 "Content-Type":"application/json",
@@ -30,31 +29,41 @@ class GroupContainer extends Component{
         }))
     }
 
+
     componentDidMount = () => {
         this.getGroups()
     }
 
     onAddGroup = async () => {
         let waiting = await this.getGroups()
-        if (waiting) {}
         this.setCurrentGroup(this.state.allGroups[this.state.allGroups.length-1]) 
-        
     }
 
     setCurrentGroup = (selectedGroup) => {
+        let index = this.state.selectedGroup
+        
+        for(let i = 0; i < this.state.allGroups.length; i++){
+            if (this.state.allGroups[i].id == selectedGroup.id){
+                index = i;
+            }
+        }
+
+        
         this.setState({
-            currentGroup: selectedGroup
+            currentGroup: index
         })
         console.log(selectedGroup)
         console.log("current group", this.state.currentGroup)
     }
 
+
+
     render() {
         return(
             <div>
                 <h1>Group Container</h1>
-                <GroupViewer BackendURL={this.props.BackendURL} currentGroup={this.state.currentGroup}/>
-                <GroupSelector currentGroup={this.state.currentGroup} onSelectGroup={this.setCurrentGroup} groups={this.state.allGroups} onAddGroup={this.onAddGroup} BackendURL={this.props.BackendURL}/>                              
+                {!!this.state.currentGroup? <GroupViewer BackendURL={this.props.BackendURL} currentGroup={this.state.allGroups[this.state.currentGroup]} refreshGroups={this.getGroups}/> : <h5>YOUR SOUL SHALL BE DEVOURED</h5>}
+                <GroupSelector currentGroup={this.state.allGroups[this.state.currentGroup]} onSelectGroup={this.setCurrentGroup} groups={this.state.allGroups} onAddGroup={this.onAddGroup} BackendURL={this.props.BackendURL}/>                              
             </div>
         )
     }

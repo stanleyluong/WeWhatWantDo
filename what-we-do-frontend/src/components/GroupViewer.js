@@ -9,8 +9,7 @@ class GroupViewer extends Component {
   }
 
   listGroupMembers = () => {
-      if (this.props.currentGroup){
-    console.log('props in GroupViewer', this.props.currentGroup)
+    if (this.props.currentGroup){
     // debugger
 
     return this.props.currentGroup.users.map(member => {
@@ -28,7 +27,7 @@ class GroupViewer extends Component {
         <h2>{this.listGroupMembers()}</h2>
         <SuggestionForm currentGroup={this.props.currentGroup}BackendURL={this.props.BackendURL}/>
 
-        <InviteBar BackendURL={this.props.BackendURL}/>
+        <InviteBar BackendURL={this.props.BackendURL} currentGroup={this.props.currentGroup} refreshGroups={this.props.refreshGroups}/>
         {/* <CheckboxToggle /> */}
 
     </div>;

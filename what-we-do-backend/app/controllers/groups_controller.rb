@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
     before_action :grab_group, except: [:create, :getGroups]
 
 
+
     def show
         if (@user.groups.include?(@group))
             # byebug
@@ -13,7 +14,7 @@ class GroupsController < ApplicationController
     end
 
     def create
-        byebug
+        # byebug
         @group = Group.new(group_params)
         if @group.save
             @group.users << User.find(params[:userID])
@@ -34,9 +35,17 @@ class GroupsController < ApplicationController
         
         render :json => @suggestions['Similar']['Results']
     end
+
+
+    def invite
+        # byebug
+        @user = User.find(params[:userID])
+        @invitee = User.find(params[:inviteeID])
+        @group.users << @invitee
+        
+    end
    
     private
-
     def grab_group
         @group = Group.find(params[:id])
     end

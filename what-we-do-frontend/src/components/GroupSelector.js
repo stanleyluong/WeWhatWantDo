@@ -40,8 +40,8 @@ class GroupSelector extends Component {
         }
       })
     })
-    .then(waitForIt => {this.props.onAddGroup()})
-    .then(waitForIt => {this.setState({groupName: ''})})
+    .then( () => {this.props.onAddGroup()})
+    .then( () => {this.setState({groupName: ''})})
   }
 
   render() {
