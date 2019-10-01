@@ -35,7 +35,7 @@ export default class ContentContainer extends Component{
         return(
             <div>
                 <ContentAddBar BackendURL={this.props.BackendURL} onAddContent={this.getContents}/>
-                <ContentViewer content={this.state.allContent} BackendURL={this.props.BackendURL}/>
+                <ContentViewer content={this.state.allContent} BackendURL={this.props.BackendURL} onRemoveContent={this.getContents}/>
             </div>
         )
     }

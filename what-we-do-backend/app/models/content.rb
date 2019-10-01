@@ -12,11 +12,13 @@ class Content < ApplicationRecord
     end
 
     def self.removeContent(userID, contentID)
+        contentID = contentID.to_i
+
         chosenContent = Content.find(contentID)
         user = User.find(userID)
 
         usersLike = user.likes.find do |like|
-            return like.content_id == contentID
+            like.content_id == contentID
         end
 
         Like.destroy(usersLike.id)

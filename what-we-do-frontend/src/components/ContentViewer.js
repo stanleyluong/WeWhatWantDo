@@ -3,8 +3,8 @@ import React,{Component} from 'react'
 export default class ContentViewer extends Component{
 
     handleRemove = (event) => {
-        console.log(event.target.id)
-        fetch(this.props.BackendURL+"/user-content",{
+        console.log('event target', event.target)
+        fetch(this.props.BackendURL+"/remove-content",{
             method: "POST",
             headers: {
                 "Content-Type":"application/json",
@@ -15,11 +15,12 @@ export default class ContentViewer extends Component{
                 contentID: event.target.id //event.target.getAttribute('id')
             })
         })
+        .then(response =>{ this.props.onRemoveContent() })
     }
     
     listContents = () => {
-       return this.state.content.map(con => {
-            return <li>{con.title} <button id={con.id} onclick={this.handleRemove(con.id)}>Remove Content</button></li>
+       return this.props.content.map(con => {
+            return <li>{con.title} <button id={con.id} onClick={this.handleRemove}>Remove Content</button></li>
        })
     }
 

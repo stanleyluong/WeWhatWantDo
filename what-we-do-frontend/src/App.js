@@ -9,7 +9,7 @@ import ContentContainer from './containers/ContentContainer'
 class App extends Component{
   constructor(){
     super()
-    this.state = {currentUser: null}
+    this.state = {currentUser: null, redirect: null}
   }
 
   logIn = userName => {
@@ -28,21 +28,41 @@ class App extends Component{
     .then (response => response.json())
     .then(data => {
       sessionStorage.setItem('current_user',JSON.stringify(data));
-      this.setState({currentUser: data})
+      this.setState({currentUser: data, redirect: '/user'});
+      
       // .catch(err=>console.log(err))
     })
   }
 
+  handleRedirect =  () => {
+    if (!this.state.currentUser && this.state.redirect === null && window.location.pathname !== '/'){
+      this.setState({redirect:'/'})
+    }
+    if (!!this.state.redirect){
+      let temp = this.state.redirect;
+      this.setState({redirect: null});
+      return <Redirect to={`${temp}`}/>
+    }else{
+      return null
+    }
+  }
 
   render() {
+    console.log('current user', this.state.currentUser)
+    
     return (
     <div className="App">
       <Router history={this.state.history}>
-        {!this.state.currentUser? <Redirect to='/'/> : null}
+        {this.handleRedirect()}
         <Route path='/' exact render={() => <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>} />
 
-        {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
-        {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>SUFFER FOOLS</p>}
+        <Route path='/user'>
+          {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
+        </Route>
+
+        <Route path='/user'>
+          {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>SUFFER FOOLS</p>}
+        </Route>
       </Router>
     </div>
     )
