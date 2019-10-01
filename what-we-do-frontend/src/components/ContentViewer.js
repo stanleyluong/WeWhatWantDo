@@ -31,9 +31,26 @@ export default class ContentViewer extends Component{
         this.getContents()
     }
 
+    handleRemove = (event) => {
+        fetch(this.props.BackendURL+"/user-content",{
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json",
+                "Accept":"application/json"
+            },
+            body: JSON.stringify({
+                userID: JSON.parse(sessionStorage.getItem('current_user')).id,
+                contentID: .id
+            })
+        })
+   
+        }
+    }
+
     listContents = () => {
        return this.state.content.map(con => {
-            return <li>{con.title}</li>
+            return <li>{con.title}</li>,
+                <button onclick={this.handleRemove(con.id)}>Remove Content</button>
         })
     }
 
@@ -42,6 +59,7 @@ export default class ContentViewer extends Component{
             <div>
                 <h2>ContentViewer</h2>
                 <ul>{this.listContents()}</ul>
+                
             </div>
         )
     }
