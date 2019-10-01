@@ -10,13 +10,6 @@ class UsersController < ApplicationController
         render :json => @user
     end
 
-    def getGroups
-        @user = User.find(params[:userID])        
-        @groups = @user.groups
-        # byebug
-        render json: @groups
-    end
-
     def login
         # params[:username] = 'eve'
         @username = params[:username].downcase

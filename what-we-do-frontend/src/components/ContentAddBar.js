@@ -11,8 +11,10 @@ export default class ContentAddBar extends Component{
         this.setState({content: event.target.value});
     }
 
-    handleAddContent = (event) => {
+    handleAddContent = async (event) => {
+        console.log('handle Add content')
         event.preventDefault();
+        
         fetch(this.props.BackendURL+'/add-content', {
             method: 'POST',
             headers: {
@@ -24,6 +26,7 @@ export default class ContentAddBar extends Component{
                 title: this.state.content
             })
         })
+        .then(response => {this.props.onAddContent()})
     }
 
     render(){

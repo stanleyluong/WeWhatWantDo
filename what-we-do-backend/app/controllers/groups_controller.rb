@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-    before_action: grab_group, except: :create
+    skip_before_action :verify_authenticity_token, if: :json_request?
+    before_action :grab_group, except: [:create, :getGroups]
 
 
     def show
@@ -12,7 +13,6 @@ class GroupsController < ApplicationController
     end
 
     def create
-        @user = User.find(session[:current_user_id])
         @group = Group.new(group_params)
         if @group.save
             @user.groups << @group 
@@ -22,15 +22,22 @@ class GroupsController < ApplicationController
         end
     end
 
+    def getGroups
+        @user = User.find(params[:userID])        
+        @groups = @user.groups
+        # byebug
+        render json: @groups
+    end
+
     def suggest
         @suggestions = @group.getSuggestions(params[:types])
-        render :json => @suggestions
+        
+        render :json => @suggestions['Similar']['Results']
     end
    
     private
 
     def grab_group
-        @user = User.find(session[:current_user_id])
         @group = Group.find(params[:id])
     end
 
@@ -38,4 +45,9 @@ class GroupsController < ApplicationController
         params.require(:group).permit(:title)
     end
 
+    protected
+
+    def json_request? 
+        return request.format.json?
+    end
 end

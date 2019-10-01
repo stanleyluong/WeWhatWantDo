@@ -2,36 +2,8 @@ import React,{Component} from 'react'
 
 export default class ContentViewer extends Component{
 
-    constructor(props){
-        super(props)
-        this.state = { content: []}
-    }
-
-    getContents = ()  => {
-        // event.preventDefault();
-        // console.log(sessionStorage.getItem('current0'))
-        fetch(this.props.BackendURL + "/user-content", {
-            method: 'POST',
-            headers: {
-                "Content-Type":"application/json",
-                "Accept":"application/json"
-            },
-            body: JSON.stringify({
-                userID: JSON.parse(sessionStorage.getItem('current_user')).id
-            })
-        })
-        .then(response => response.json())
-        .then(contents => this.setState({
-            content: contents
-        }))
-        
-    }
-
-    componentDidMount = () => {
-        this.getContents()
-    }
-
     handleRemove = (event) => {
+        console.log(event.target.id)
         fetch(this.props.BackendURL+"/user-content",{
             method: "POST",
             headers: {
@@ -40,18 +12,15 @@ export default class ContentViewer extends Component{
             },
             body: JSON.stringify({
                 userID: JSON.parse(sessionStorage.getItem('current_user')).id,
-                contentID: .id
+                contentID: event.target.id //event.target.getAttribute('id')
             })
         })
-   
-        }
     }
-
+    
     listContents = () => {
        return this.state.content.map(con => {
-            return <li>{con.title}</li>,
-                <button onclick={this.handleRemove(con.id)}>Remove Content</button>
-        })
+            return <li>{con.title} <button id={con.id} onclick={this.handleRemove(con.id)}>Remove Content</button></li>
+       })
     }
 
     render(){

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 // import logo from './logo.svg';
 import './App.css';
 import UserNameBar from './components/usernameBar'
@@ -33,16 +34,16 @@ class App extends Component{
   }
 
 
-
-
   render() {
     return (
     <div className="App">
-      {console.log(this.state)}
-      <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>
-      
-      {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
-      {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>SUFFER FOOLS</p>}
+      <Router history={this.state.history}>
+        {!this.state.currentUser? <Redirect to='/'/> : null}
+        <Route path='/' exact render={() => <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>} />
+
+        {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
+        {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>SUFFER FOOLS</p>}
+      </Router>
     </div>
     )
   }

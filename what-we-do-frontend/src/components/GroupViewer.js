@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import InviteBar from './InviteBar'
-import CheckboxToggle from './Checkbox'
+// import CheckboxToggle from './Checkbox'
+import SuggestionForm from './SuggestionForm'
 
 class GroupViewer extends Component {
   constructor(props) {
@@ -25,8 +26,10 @@ class GroupViewer extends Component {
     return <div>
         <h3>GroupViewer</h3>
         <h2>{this.listGroupMembers()}</h2>
+        <SuggestionForm currentGroup={this.props.currentGroup}BackendURL={this.props.BackendURL}/>
+
         <InviteBar BackendURL={this.props.BackendURL}/>
-        <CheckboxToggle />
+        {/* <CheckboxToggle /> */}
 
     </div>;
   }
