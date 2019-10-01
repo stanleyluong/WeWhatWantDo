@@ -30,7 +30,7 @@ class ContentsController < ApplicationController
     end
 
     def remove
-        Content.removeContent(params[:userID],params[:content_id])
+        Content.removeContent(params[:userID],params[:contentID])
     end
 
     protected
