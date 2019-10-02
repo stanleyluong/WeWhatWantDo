@@ -43,7 +43,7 @@ class GroupContainer extends Component{
         let index = this.state.selectedGroup
         
         for(let i = 0; i < this.state.allGroups.length; i++){
-            if (this.state.allGroups[i].id == selectedGroup.id){
+            if (this.state.allGroups[i].id === selectedGroup.id){
                 index = i;
             }
         }

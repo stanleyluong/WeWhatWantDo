@@ -4,10 +4,7 @@ import InviteBar from './InviteBar'
 import SuggestionForm from './SuggestionForm'
 
 class GroupViewer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+  
   listGroupMembers = () => {
     if (this.props.currentGroup){
     // debugger
