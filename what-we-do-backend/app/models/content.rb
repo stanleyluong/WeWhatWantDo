@@ -2,13 +2,42 @@ class Content < ApplicationRecord
     has_many :likes
     has_many :users, through: :likes
 
-    def self.addContent(userID, title)
-        chosenContent = Content.find_by({title: title})
-        if chosenContent == nil 
-            chosenContent = Content.create({title:title})
+    def self.addContent(user, title, category)
+        contentMatches = Content.where("TITLE = '#{title}'")
+        chosenContent = nil
+
+        #Unrecognized Title
+        if (contentMatches.length == 0)
+            chosenContent = Content.create({title:title, category:category})
+            user.contents << chosenContent
+            return
         end
 
-        User.find(userID).contents << chosenContent
+        if (category != '')
+            #Title & category match
+            contentMatches.length.times do |i|
+                if (contentMatches[i].category == category)
+                    chosenContent = contentMatches[i]
+                    user.contents << chosenContent
+                    return
+                end
+            end
+
+            #Title match, but no category match
+            chosenContent = Content.create({title:title, category:category})
+            user.contents << chosenContent
+            return
+        else
+
+            #Title match, auto category
+            chosenContent = contentMatches[0]
+            user.contents << chosenContent
+            return
+        end    
+
+        #Should never hit here
+        byebug
+        return
     end
 
     def self.removeContent(userID, contentID)

@@ -26,7 +26,9 @@ class ContentsController < ApplicationController
     end
 
     def add
-        Content.addContent(params[:userID],params[:title])
+        @user = User.find(params[:userID])
+        Content.addContent(@user,params[:title],params[:category])
+        @user.contents = @user.contents.uniq
     end
 
     def remove
