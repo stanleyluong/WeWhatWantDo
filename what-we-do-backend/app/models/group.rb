@@ -6,7 +6,9 @@ class Group < ApplicationRecord
     has_many :users, through: :invites
 
     def getSuggestions(type=['movies'])
-        
+        if (type.class == String)
+            type = [type]
+        end
         if (type == nil)
             type = ['movies']
         end
