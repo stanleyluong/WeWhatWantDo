@@ -12,20 +12,37 @@ class Group < ApplicationRecord
         if (type == nil || type == ['null'])
             type = ['all']
         end
-        byebug
+        # byebug
         #sample content from each user and throw it into function
         #run fetch and return output of fetch statement
-        query = []
+        sampledContent = []
 
         self.users.each do |user|
-            query << user.generateSample(type)
+            sampledContent << user.generateSample(type)
         end
-        byebug  
-        query = query.flatten
+        sampledContent = sampledContent.flatten
+        # byebug
+
+        query = sampledContent.map do |element|
+            element[:title]
+        end
+
         fetchResults = fetch(query,type)
+        contentVerification(sampledContent,fetchResults['Similar']['Info'])
         return fetchResults
     end
 
+    def contentVerification (sampledContent,fetchResults)
+        # byebug
+        sampledContent.length.times do |i|
+            content = Content.find(sampledContent[i][:id])
+            result = fetchResults[i]
+            # byebug
+            if (!content.verified)
+                content.verifyThis(result)
+            end
+        end
+    end
     # https://tastedive.com/api/similar?q=eminem%2C+pulp+fiction
 
     # https://tastedive.com/api/similar?k=346710-BrittanF-PHC42GKW&q=dark+crystal%2C+labyrinth&type=movies%2C+shows&verbose=1&limit=20
@@ -35,6 +52,7 @@ class Group < ApplicationRecord
         # response = RestClient.get(url)
         uri = URI(url)
         response = Net::HTTP.get_response(uri)
+        # byebug
         @parsed_response = JSON.parse(response.body)
         return @parsed_response
     end

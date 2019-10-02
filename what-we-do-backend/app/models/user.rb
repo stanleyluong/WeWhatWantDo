@@ -36,15 +36,28 @@ class User < ApplicationRecord
             revisedTypes.include?(content.category)
         end
 
-        media = media.map do |content|
+        # media = media.map do |content|
+        #     string = ''
+        #     if content.category != ''
+        #         string += "#{content.category}:"
+        #     end
+        #     string += content.title
+        # end
+
+        send = media.sample(3)
+        # byebug
+        send = send.map do |content|
             string = ''
             if content.category != ''
                 string += "#{content.category}:"
             end
             string += content.title
-        end
 
-        return media.sample(3)
+            {id: content.id, user:self, title:string}
+        end
+        
+
+        return send
     end
 
 end
