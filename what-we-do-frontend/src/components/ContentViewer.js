@@ -20,7 +20,7 @@ export default class ContentViewer extends Component{
     
     listContents = () => {
        return this.props.content.map(con => {
-            return <li>{con.title} <button id={con.id} onClick={this.handleRemove}>Remove Content</button></li>
+            return <li key={`${con.title} list`}>{con.title} <button key={`${con.title} button`} id={con.id} onClick={this.handleRemove}>Remove Content</button></li>
        })
     }
 

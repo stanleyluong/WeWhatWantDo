@@ -5,7 +5,7 @@ class SuggestionCard extends Component {
   generateImage = () => {
       console.log("yID",this.props.itemData.yID)
     let yID = this.props.itemData.yID;
-    return yID = !null ? (
+    return yID !== null ? (
        <Embed
         aspectRatio="4:3"
         id={yID}

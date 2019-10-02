@@ -67,6 +67,8 @@ class Group < ApplicationRecord
         array = array.flatten.join('')
         return array
     end
+
+
 end
 # query = ['red hot chili peppers','pulp fiction','burger king', "dark crystal","labyrinth"]
 # type = ['movies','shows']

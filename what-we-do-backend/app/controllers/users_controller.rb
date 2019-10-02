@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     def search
         # byebug
         @users = User.searchByName(params[:search])
-        render :json => @users
+        render json: {users: @users}
     end
 
     private
