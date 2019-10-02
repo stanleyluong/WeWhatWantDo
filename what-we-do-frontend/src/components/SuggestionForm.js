@@ -13,6 +13,7 @@ export default class SuggestionForm extends Component {
   };
 
   getGroupSuggestion = () => {
+      console.log("suggestion types",this.state.type)
     fetch(
       this.props.BackendURL + `/groups/${this.props.currentGroup.id}/suggest`,
       {
@@ -22,13 +23,14 @@ export default class SuggestionForm extends Component {
           Accept: "application/json"
         },
         body: JSON.stringify({
-          type: `${this.state.type}`,
+          types: `${this.state.type}`,
           userID: JSON.parse(sessionStorage.getItem("current_user")).id
         })
       }
     )
       .then(res => res.json())
       .then(async data => {
+          console.log(data)
         this.setState({
           suggestion: data.slice(0, 4)
         });
