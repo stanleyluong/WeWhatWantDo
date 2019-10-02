@@ -13,8 +13,7 @@ class GroupViewer extends Component {
     // debugger
 
     return this.props.currentGroup.users.map(member => {
-      return <li>
-        <button onClick={this.handleClick} className="groups" value={JSON.stringify(member)} key={member.username}>{member.username}</button>
+      return <li onClick={this.handleClick} className="groups" value={JSON.stringify(member)} key={member.username}>{member.username}
         </li>
     })
     }

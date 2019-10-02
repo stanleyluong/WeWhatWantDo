@@ -56,7 +56,7 @@ class App extends Component{
         {this.handleRedirect()}
         <Route path='/' exact render={() => <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>} />
 
-        <Route path='/usder'>
+        <Route path='/user'>
           {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
         </Route>
 
