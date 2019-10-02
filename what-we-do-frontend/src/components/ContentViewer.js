@@ -28,7 +28,7 @@ export default class ContentViewer extends Component{
         return (
             <div>
                 <h2>ContentViewer</h2>
-                <ul>{this.listContents()}</ul>
+                <div>{this.listContents()}</div>
                 
             </div>
         )

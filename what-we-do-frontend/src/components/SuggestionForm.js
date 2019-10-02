@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
+import SuggestionCard from "./SuggestionCard";
 
 export default class SuggestionForm extends Component {
   state = {
@@ -9,13 +10,7 @@ export default class SuggestionForm extends Component {
 
   handleChange = (e, { value }) => {
     this.setState({ type: value });
-    console.log(this.state);
   };
-
-  //   handleChange = (e, { newValue }) => this.setState(async prevState => {
-  //     console.log(this.state)
-  //     debugger
-  //     return {value: [...prevState, newValue ]}})
 
   getGroupSuggestion = () => {
     fetch(
@@ -34,67 +29,83 @@ export default class SuggestionForm extends Component {
     )
       .then(res => res.json())
       .then(async data => {
-        console.log("suggestion", data.slice(0, 3));
         this.setState({
-          suggestion: data.slice(0, 3)
+          suggestion: data.slice(0, 4)
         });
       })
-      .then(async () => console.log("test", this.state));
+  };
+
+  generateSuggestionCards = () => {
+    if (this.state.suggestion.length !== 0) {
+      return this.state.suggestion.map((item, index) => (
+          <div>
+         <SuggestionCard
+          key={index}
+          itemData={item}
+        />
+        </div>
+      ))
+      
+    }
   };
 
   render() {
     const { value } = this.state;
     return (
-      <Form>
-        <Form.Group inline widths="equal">
-          <label>Media type:</label>
-          <Form.Checkbox
-            label="Movies"
-            value="movie"
-            checked={value === "movies"}
-            onChange={this.handleChange}
-          />
-          <Form.Checkbox
-            label="TV Shows"
-            value="show"
-            checked={value === "shows"}
-            onChange={this.handleChange}
-          />
-          <Form.Checkbox
-            label="Books"
-            value="book"
-            checked={value === "books"}
-            onChange={this.handleChange}
-          />
-          <Form.Checkbox
-            label="Authors"
-            value="author"
-            checked={value === "authors"}
-            onChange={this.handleChange}
-          />
-          <Form.Checkbox
-            label="Music"
-            value="music"
-            checked={value === "music"}
-            onChange={this.handleChange}
-          />
-          <Form.Checkbox
-            label="Games"
-            value="game"
-            checked={value === "games"}
-            onChange={this.handleChange}
-          />
-          <Form.Checkbox
-            label="Podcasts"
-            value="podcast"
-            checked={value === "podcasts"}
-            onChange={this.handleChange}
-          />
-        </Form.Group>
-        <Form.Button onClick={() => this.getGroupSuggestion()}>
-          Get Group Suggestion!
-        </Form.Button>
-      </Form>
+      <div>
+        <Form>
+          <Form.Group inline widths="equal">
+            <label>Media type:</label>
+            <Form.Checkbox
+              label="Movies"
+              value="movie"
+              checked={value === "movies"}
+              onChange={this.handleChange}
+            />
+            <Form.Checkbox
+              label="TV Shows"
+              value="show"
+              checked={value === "shows"}
+              onChange={this.handleChange}
+            />
+            <Form.Checkbox
+              label="Books"
+              value="book"
+              checked={value === "books"}
+              onChange={this.handleChange}
+            />
+            <Form.Checkbox
+              label="Authors"
+              value="author"
+              checked={value === "authors"}
+              onChange={this.handleChange}
+            />
+            <Form.Checkbox
+              label="Music"
+              value="music"
+              checked={value === "music"}
+              onChange={this.handleChange}
+            />
+            <Form.Checkbox
+              label="Games"
+              value="game"
+              checked={value === "games"}
+              onChange={this.handleChange}
+            />
+            <Form.Checkbox
+              label="Podcasts"
+              value="podcast"
+              checked={value === "podcasts"}
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Button onClick={() => this.getGroupSuggestion()}>
+            Get Group Suggestion!
+          </Form.Button>
+        </Form>
+
+        <div class="suggestionContainer">{this.generateSuggestionCards()}</div>
+      </div>
     );
   }
 }
