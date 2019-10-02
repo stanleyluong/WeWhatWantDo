@@ -5,6 +5,7 @@ import './App.css';
 import UserNameBar from './components/usernameBar'
 import GroupContainer from './containers/GroupContainer'
 import ContentContainer from './containers/ContentContainer'
+import Navbar from './components/Navbar'
 
 class App extends Component{
   constructor(){
@@ -28,15 +29,15 @@ class App extends Component{
     .then (response => response.json())
     .then(data => {
       sessionStorage.setItem('current_user',JSON.stringify(data));
-      this.setState({currentUser: data, redirect: '/user'});
+      this.setState({currentUser: data, redirect: '/user/groups'});
       
       // .catch(err=>console.log(err))
     })
   }
 
   handleRedirect =  () => {
-    if (!this.state.currentUser && this.state.redirect === null && window.location.pathname !== '/'){
-      this.setState({redirect:'/'})
+    if (!this.state.currentUser && this.state.redirect === null && window.location.pathname !== '/signin'){
+      this.setState({redirect:'/signin'})
     }
     if (!!this.state.redirect){
       let temp = this.state.redirect;
@@ -48,20 +49,24 @@ class App extends Component{
   }
 
   render() {
-    console.log('current user', this.state.currentUser)
     
     return (
     <div className="App">
       <Router history={this.state.history}>
         {this.handleRedirect()}
-        <Route path='/' exact render={() => <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>} />
-
+        
         <Route path='/user'>
-          {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
+          <Navbar/>
         </Route>
 
-        <Route path='/user'>
-          {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>SUFFER FOOLS</p>}
+        <Route path='/signin' render={() => <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>} />
+
+        <Route path='/user/content'>
+          {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <Redirect to={`/signin`}/>}
+        </Route>
+
+        <Route path='/user/groups'>
+          {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <Redirect to={`/signin`}/>}
         </Route>
       </Router>
     </div>

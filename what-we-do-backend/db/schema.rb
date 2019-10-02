@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(version: 2019_09_25_233511) do
 
   create_table "contents", force: :cascade do |t|
     t.string "title"
-    t.string "type"
+    t.string "category", default: ""
     t.string "description", default: "[Description]"
+    t.boolean "verified", default: false
+    t.boolean "problem", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -5,21 +5,22 @@ class Group < ApplicationRecord
     has_many :invites
     has_many :users, through: :invites
 
-    def getSuggestions(type=['movies'])
+    def getSuggestions(type=['all'])
         if (type.class == String)
             type = [type]
         end
-        if (type == nil)
-            type = ['movies']
+        if (type == nil || type == ['null'])
+            type = ['all']
         end
+        byebug
         #sample content from each user and throw it into function
         #run fetch and return output of fetch statement
         query = []
 
         self.users.each do |user|
-            query << user.contents.sample(3).map do |content| content.title end
+            query << user.generateSample(type)
         end
-
+        byebug  
         query = query.flatten
         fetchResults = fetch(query,type)
         return fetchResults
