@@ -51,8 +51,8 @@ export default class SuggestionForm extends Component {
   generateSuggestionCards = () => {
     if (this.state.suggestion.length !== 0) {
       return this.state.allSuggestions.slice((this.state.sliceCounter - 1), (this.state.sliceCounter + 3)).map((item, index) => (
-        <div>
-          <SuggestionCard key={index} itemData={item} />
+        <div key={index}>
+          <SuggestionCard itemData={item} />
         </div>
       ));
     }
@@ -95,26 +95,26 @@ export default class SuggestionForm extends Component {
           <Form.Group inline widths="equal">
             <Form.Checkbox
               label='Movies'
-              value='movie'
-              checked={this.state.type === 'movie'}
+              value='movies'
+              checked={this.state.type === 'movies'}
               onChange={this.handleChange}
             />
             <Form.Checkbox
               label="TV Shows"
-              value="show"
-              checked={this.state.type === "show"}
+              value="shows"
+              checked={this.state.type === "shows"}
               onChange={this.handleChange}
             />
             <Form.Checkbox
               label="Books"
-              value="book"
-              checked={this.state.type === "book"}
+              value="books"
+              checked={this.state.type === "books"}
               onChange={this.handleChange}
             />
             <Form.Checkbox
               label="Authors"
-              value="author"
-              checked={this.state.type === "author"}
+              value="authors"
+              checked={this.state.type === "authors"}
               onChange={this.handleChange}
             />
             <Form.Checkbox
@@ -125,15 +125,15 @@ export default class SuggestionForm extends Component {
             />
             <Form.Checkbox
               label="Games"
-              value="game"
-              checked={this.state.type === "game"}
+              value="games"
+              checked={this.state.type === "games"}
               onChange={this.handleChange}
             />
           </Form.Group>
           {this.generateSuggestionButton()}
         </Form>
 
-        <div class="suggestionContainer">{this.generateSuggestionCards()}</div>
+        <div className="suggestionContainer">{this.generateSuggestionCards()}</div>
       </div>
     );
   }

@@ -49,7 +49,7 @@ class SuggestionCard extends Component {
   };
 
   render() {
-    let { Name, Type, wTeaser } = this.props.itemData;
+    let { Name, Type } = this.props.itemData;
     return (
       <div>
         <br></br>
