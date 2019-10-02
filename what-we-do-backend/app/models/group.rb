@@ -38,7 +38,6 @@ class Group < ApplicationRecord
         return @parsed_response
     end
 
-
     def makeUrl(query, type)
         key = '346710-BrittanF-PHC42GKW'
         url = "https://tastedive.com/api/similar?k=#{key}&q="+translator(query)+"&type="+translator(type)+"&verbose=1"
