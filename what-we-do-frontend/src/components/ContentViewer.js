@@ -1,6 +1,14 @@
 import React,{Component} from 'react'
 
 export default class ContentViewer extends Component{
+    constructor(props){
+        super(props)
+        this.state = {showRemoveButtons: false}
+    }
+
+    toggleRemoveButtons = () => {
+        this.setState(prevState => {return {showRemoveButtons: !prevState.showRemoveButtons}})
+    }
 
     handleRemove = (event) => {
         console.log('event target', event.target)
@@ -20,7 +28,12 @@ export default class ContentViewer extends Component{
     
     listContents = () => {
        return this.props.content.map(con => {
-            return <li key={`${con.title} list`}>{con.title} <button key={`${con.title} button`} id={con.id} onClick={this.handleRemove}>Remove Content</button></li>
+           console.log('con', con)
+            if (this.state.showRemoveButtons){
+                return <li key={`${con.title} list`}>{con.title} ({con.category})<button key={`${con.title} button`} id={con.id} onClick={this.handleRemove}>X</button></li>
+            } else {
+                return <li key={`${con.title} list`}>{con.title} ({con.category})</li>
+            }
        })
     }
 
@@ -29,7 +42,7 @@ export default class ContentViewer extends Component{
             <div>
                 <h2>ContentViewer</h2>
                 <div>{this.listContents()}</div>
-                
+                <button onClick={this.toggleRemoveButtons}>{this.state.showRemoveButtons? 'Lock Content' : 'Unlock Content'}</button>
             </div>
         )
     }
