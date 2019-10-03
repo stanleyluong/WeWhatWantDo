@@ -69,6 +69,7 @@ export default class InviteBar extends Component{
             })
         })
         .then(async () =>{ this.props.refreshGroups()} )
+        this.setState({search: '', foundUsers: []})
     }
 
 

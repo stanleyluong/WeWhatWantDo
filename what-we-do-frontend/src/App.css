@@ -21,27 +21,68 @@
   color: #09d3ac;
 }
 
-#youtubeVid{
-  height: auto;
-  width: 700px;
-}
-
 .suggestionContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-
 }
 .suggestionContainer > div {
-  flex: 1; 
+  flex: 1;
   box-sizing: border-box;
   margin-bottom: 10px;
-  margin-left: 35px;
-  margin-right: 35px
-
-  
-
-
-
+  margin-left: 2vw;
 }
+
+body {
+  margin: 0;
+  height: 100%;
+  background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+
+#topLevel {
+  display:grid;
+  height:100vh;
+  width: 100vw;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+  
+}
+
+#logInForm {
+  grid-column-start: 3;
+  grid-row-start: 4;
+  text-align: center;
+}
+
+#title{
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start:2;
+  grid-row-end:3;
+  text-align: center;
+  font-size: 80px;
+  font-family: 'Permanent Marker', cursive;
+  
+}
+
+#navBar{
+  grid-column-start: 1;
+  grid-column-end:6;
+}
+
+#groupSelector{
+  grid-column-start:3;
+}
+
+#selectGroup{
+  font-family: 'Permanent Marker', cursive;
+  font-size: 20px
+}
+
+
