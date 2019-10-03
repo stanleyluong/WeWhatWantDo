@@ -58,8 +58,8 @@ class Content < ApplicationRecord
     end
 
     def verifyThis(result)
-        byebug
-        self.verified = false
+        # byebug
+        self.verified = true
         if (result['Type'] == 'unknown')
             self.problem = true
             self.save
