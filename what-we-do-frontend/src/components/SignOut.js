@@ -1,17 +1,20 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 
-export default class SignOut extends Component{
-    constructor(props){
-        super(props)
-    }
+export default class SignOut extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    handleSignOut = () => {
+  handleOnClick = () => {
+    this.props.handleSignOut();
+  };
 
-    }
-
-    render(){
-        return (
-            <p></p>
-        )
-    }
+  render() {
+    return (
+      <button id="button-new" onClick={this.handleOnClick}>
+        Sign Out
+      </button>
+      // <div>{Date.now}</div>
+    );
+  }
 }

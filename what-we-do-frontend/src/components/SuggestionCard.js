@@ -30,20 +30,28 @@ class SuggestionCard extends Component {
 
   handleClick = () => {
     this.setState(prevState => {
-      return {isClicked: !prevState.isClicked}
+      return { isClicked: !prevState.isClicked };
     });
-  }
+  };
 
   generateDescription = () => {
     return this.state.isClicked === true ? (
       <Card.Description>
         {this.props.itemData.wTeaser}
         <br></br>
-        <button onClick={() => this.handleClick()}>See Less...</button>
+        <button id="button-new" onClick={() => this.handleClick()}>
+          See Less...
+        </button>
       </Card.Description>
     ) : (
       <Card.Description>
-        <button className="moreInfoBtn"onClick={() => this.handleClick()}><span>See More...</span></button>
+        <button
+          id="button-new"
+          className="moreInfoBtn"
+          onClick={() => this.handleClick()}
+        >
+          <span>See More...</span>
+        </button>
       </Card.Description>
     );
   };

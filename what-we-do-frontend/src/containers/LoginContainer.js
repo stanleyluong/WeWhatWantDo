@@ -16,7 +16,7 @@ export default class SigninSignup extends Component {
                 </div>
             )
        } else {
-           return <div><SignOut /></div>
+           return <div><SignOut currentUser={this.props.currentUser} handleSignOut={this.props.handleSignOut}/></div>
        }
    }
 
