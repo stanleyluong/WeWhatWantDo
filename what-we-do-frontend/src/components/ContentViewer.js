@@ -59,9 +59,9 @@ export default class ContentViewer extends Component {
   render() {
     return (
       <div>
-        <h2>ContentViewer</h2>
+        <h2>My Liked Media</h2>
         <div>{this.listContents()}</div>
-        <button id="button-new" onClick={this.toggleRemoveButtons}>
+        <button id="unlockBtn" onClick={this.toggleRemoveButtons}>
           {this.state.showRemoveButtons ? "Lock Content" : "Unlock Content"}
         </button>
       </div>

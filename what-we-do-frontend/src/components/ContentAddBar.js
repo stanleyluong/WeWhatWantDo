@@ -34,10 +34,10 @@ export default class ContentAddBar extends Component{
     render(){
         return ( 
         <div>
-            <h2>ContentAddBar</h2>
+            <h2>Add Media</h2>
             <form onSubmit={this.handleAddContent}>
-            <label>Add Content:</label>
-            <select onChange={e=>{this.setState({contentType: e.target.value})}}>
+            <label>Media Type:</label>
+            <select id="button-new"onChange={e=>{this.setState({contentType: e.target.value})}}>
                 <option value=''>(Auto)</option>
                 <option value='movie'>Movie</option>
                 <option value='show'>Show</option>
@@ -47,7 +47,7 @@ export default class ContentAddBar extends Component{
                 <option value='author'>Author</option>
             </select>
             <input type="text" value={this.state.content} onChange={this.handleChange} />
-            <input type="submit" value="Submit" />
+            <input id="button-new"type="submit" value="Submit" />
             </form>
         </div>
         )

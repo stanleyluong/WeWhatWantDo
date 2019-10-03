@@ -7,7 +7,7 @@ export default class Navbar extends Component{
         <div id="navBar">
             <Link to='/user/groups'>Groups </Link>
             |
-            <Link to='/user/content'> My Content</Link>
+            <Link to='/user/content'> My Media</Link>
         </div>
         )
     }

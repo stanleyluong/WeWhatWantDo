@@ -145,7 +145,7 @@ body {
  text-align: center;
  cursor: pointer;
  font-size:22px;
- margin: 5px 0 5px 10px;
+ margin: 5px 5px 5px 10px;
  border-radius: 4px;
  background-color:#AB7A29;
  border: none;
@@ -157,6 +157,23 @@ body {
  transition: all 0.5s;
  font-family: 'Boogaloo', cursive;
 }
+
+#unlockBtn{
+  text-align: center;
+  cursor: pointer;
+  font-size:22px;
+  margin: 5px 0 5px 10px;
+  border-radius: 4px;
+  background-color:#AB7A29;
+  border: none;
+  padding: 4px;
+  width: 140px;
+  height: 50px;
+  border: 1px black;
+  outline: black;
+  transition: all 0.5s;
+  font-family: 'Boogaloo', cursive;
+ }
 
 #buttonSuggest{
   text-align: center;
@@ -179,6 +196,9 @@ body {
   background-color: #F7DBAB;
 }
 #button-new:hover{
+  background-color: #F7DBAB;
+}
+#unlockBtn:hover{
   background-color: #F7DBAB;
 }
 
