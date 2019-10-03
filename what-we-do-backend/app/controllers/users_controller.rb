@@ -20,12 +20,10 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.valid?
-            byebug
             @user.username = @user.username.downcase.capitalize
             @user.save
             render :json => @user
         else
-            byebug
             render :json => {alert: "Username already exists. Please choose another."}
         end
     end

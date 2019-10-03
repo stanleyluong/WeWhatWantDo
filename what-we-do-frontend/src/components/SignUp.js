@@ -8,7 +8,7 @@ export default class SignUp extends Component{
     }
 
     responseCheck = response => {
-        if (response.alert){
+        if (!!response.alert){
             alert(response.alert)
         } else {
             this.props.login(this.state.input)
