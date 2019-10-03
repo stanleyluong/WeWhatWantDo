@@ -8,22 +8,11 @@ class GroupSelector extends Component {
 
   listGroups = () => {
     return this.props.groups.map((group, index) => {
-      return (
-        <div key={index}>
-          <button
-            id="button-new"
-            onClick={this.handleClick}
-            key={group.title}
-            className="groups"
-            value={JSON.stringify(group)}
-          >
-            {" "}
-            {group.title}{" "}
-          </button>
+      return <div key={index}>
+        <button onClick={this.handleClick} key={group.title} className="groups" value={JSON.stringify(group)}> {group.title} </button>
         </div>
-      );
-    });
-  };
+    })
+  }
 
   handleClick = e => {
     this.props.onSelectGroup(JSON.parse(e.target.value));
@@ -59,11 +48,8 @@ class GroupSelector extends Component {
 
   render() {
     return (
-      <div>
-        <h3>GroupSelector</h3>
-        <div id="groups">
-        {this.listGroups()}
-        </div>
+      <div id='groupSelector'>
+        <div id='groups'>{this.listGroups()}</div>
         <form onSubmit={this.onAddGroup}>
           <label>New Group</label>
           <input

@@ -34,7 +34,7 @@ export default class ContentContainer extends Component{
 
     render(){
         return(
-            <div>
+            <div className='container'>
                 <ContentAddBar 
                 BackendURL={this.props.BackendURL} 
                 onAddContent={this.getContents}

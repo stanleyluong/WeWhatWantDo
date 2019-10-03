@@ -22,7 +22,7 @@ export default class SigninSignup extends Component {
 
     render(){
         return(
-            <div id='logInForm'>
+            <div id='logInForm' className='container'>
                 {this.userCheck()}
             </div>
         )
