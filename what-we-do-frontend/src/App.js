@@ -5,6 +5,7 @@ import './App.css';
 import UserNameBar from './components/usernameBar'
 import GroupContainer from './containers/GroupContainer'
 import ContentContainer from './containers/ContentContainer'
+import LoginContainer from './containers/LoginContainer'
 
 class App extends Component{
   constructor(){
@@ -54,7 +55,7 @@ class App extends Component{
     <div className="App">
       <Router history={this.state.history}>
         {this.handleRedirect()}
-        <Route path='/' exact render={() => <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>} />
+        <Route path='/' exact render={() => <LoginContainer BackendURL={this.props.BackendURL} onLogIn={this.logIn} currentUser={this.state.currentUser}/>} />
 
         <Route path='/user'>
           {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
