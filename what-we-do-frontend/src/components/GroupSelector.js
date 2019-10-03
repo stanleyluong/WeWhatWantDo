@@ -9,7 +9,7 @@ class GroupSelector extends Component {
   listGroups = () => {
     return this.props.groups.map((group, index) => {
       return <div key={index}>
-        <button onClick={this.handleClick} key={group.title} className="groups" value={JSON.stringify(group)}> {group.title} </button>
+        <button id="button-two"onClick={this.handleClick} key={group.title} className="groups" value={JSON.stringify(group)}> {group.title} </button>
         </div>
     })
   }

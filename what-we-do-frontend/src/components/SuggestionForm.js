@@ -63,11 +63,11 @@ export default class SuggestionForm extends Component {
   generateSuggestionButton = () => {
     if (this.state.sliceCounter <= 17) {
       return this.state.sliceCounter === 0 ? (
-        <Form.Button onClick={() => this.getGroupSuggestion()}>
+        <Form.Button id="buttonSuggest" onClick={() => this.getGroupSuggestion()}>
           Get Group Suggestion!
         </Form.Button>
       ) : (
-        <Form.Button onClick={() => this.incrementSliceCounter()}>
+        <Form.Button id="buttonSuggest" onClick={() => this.incrementSliceCounter()}>
           Get More Suggestions!
         </Form.Button>
       );

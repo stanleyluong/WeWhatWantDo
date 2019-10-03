@@ -37,7 +37,7 @@ class SuggestionCard extends Component {
   generateDescription = () => {
     return this.state.isClicked === true ? (
       <Card.Description>
-        {this.props.itemData.wTeaser}
+        <span id="scroll">{this.props.itemData.wTeaser}</span>
         <br></br>
         <button id="button-new" onClick={() => this.handleClick()}>
           See Less...

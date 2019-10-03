@@ -43,7 +43,6 @@
 
 }
 #groups > div{
-  /* flex: 1; */
   box-sizing: border-box;
   margin-bottom: 10px;
   margin-left: 2vw;
@@ -52,7 +51,7 @@
 body {
   margin: 0;
   height: 100%;
-  background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+  background:  #f2f2f2;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -106,7 +105,7 @@ body {
 }
 
 #groupSelector{
-  gird-area: selector;
+  grid-area: selector;
   max-height: 1vh;
   min-height: 100px;
 }
@@ -121,12 +120,12 @@ body {
 }
 
 #groupMembers{
-  background: #DD7777;
-  gird-area: sidebar;
+  background: #F7DBAB;
+  grid-area: sidebar;
 }
 
 #groupSuggestion{
-  gird-area: suggestion;
+  grid-area: suggestion;
   min-height: 50vh;
 }
 
@@ -145,10 +144,10 @@ body {
 #button-new{
  text-align: center;
  cursor: pointer;
- font-size:18px;
+ font-size:22px;
  margin: 5px 0 5px 10px;
  border-radius: 4px;
- background-color:burlywood;
+ background-color:#AB7A29;
  border: none;
  padding: 4px;
  width: 100px;
@@ -156,5 +155,55 @@ body {
  border: 1px black;
  outline: black;
  transition: all 0.5s;
- font-family: 'Finger Paint', cursive;
+ font-family: 'Boogaloo', cursive;
+}
+
+#buttonSuggest{
+  text-align: center;
+  cursor: pointer;
+  font-size:22px;
+  margin: 5px 0 5px 10px;
+  border-radius: 4px;
+  background-color:#AB7A29;
+  border: none;
+  padding: 4px;
+  width: 200px;
+  height: 45px;
+  border: 1px black;
+  outline: black;
+  transition: all 0.5s;
+  font-family: 'Boogaloo', cursive;
+}
+
+ #buttonSuggest:hover{
+  background-color: #F7DBAB;
+}
+#button-new:hover{
+  background-color: #F7DBAB;
+}
+
+#button-two {
+  padding:15px 30px;
+  outline: none;
+  background-color: #5580AB
+  ;
+  border: none;
+  border-radius:5px;
+  box-shadow: 0 9px #95a5a6;
+  font-family: 'Indie Flower', cursive;
+  font-size: 22px;
+}
+
+#button-two:hover{
+  background-color: #ABD1F8;
+}
+
+#button-two:active {
+  background-color: #C9E4FF;
+  box-shadow: 0 5px #95a5a6;
+  transform: translateY(4px);
+}
+.description{
+  height:120px;
+  overflow:scroll;
 }
