@@ -7,6 +7,15 @@ export default class SignUp extends Component{
         this.state = {input: ""}
     }
 
+    responseCheck = response => {
+        if (response.alert){
+            alert(response.alert)
+        } else {
+            this.props.login(this.state.input)
+            
+        }
+    }
+
     handleSignUp = () => {
         let username = this.state.input
         this.props.login(username)
@@ -20,7 +29,10 @@ export default class SignUp extends Component{
                 username: username
             })
         })
-        .then(() => { this.props.login(username) })
+        //make another function call it from .then 
+        .then(response => response.json())
+        .then(response => this.responseCheck(response))
+        
     }
           
     handleOnChange = (e) => {
