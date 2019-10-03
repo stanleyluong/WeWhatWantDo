@@ -31,7 +31,7 @@ export default class SignUp extends Component{
 
     render(){
         return (
-            <div>
+            <div id="signUp">
                 <input type="text" value={this.state.input} onChange={this.handleOnChange}/>
                 <button onClick={this.handleSignUp}>Sign Up</button>
             </div>

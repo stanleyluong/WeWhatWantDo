@@ -3,13 +3,14 @@ import React,{Component} from 'react'
 import SignIn from '../components/SignIn'
 import SignUp from '../components/SignUp'
 import SignOut from '../components/SignOut'
+import Title from '../components/Title'
 
 export default class SigninSignup extends Component {
     
    userCheck = () => {
        if (this.props.currentUser === null){
             return (
-                <div>
+                <div id="hello">
                     <SignUp login={this.props.onLogIn} BackendURL={this.props.BackendURL}/>
                     <SignIn login={this.props.onLogIn}/>
                 </div>
@@ -21,7 +22,8 @@ export default class SigninSignup extends Component {
 
     render(){
         return(
-            <div>
+            <div id="topLevel">
+                <Title />
                 {this.userCheck()}
             </div>
         )

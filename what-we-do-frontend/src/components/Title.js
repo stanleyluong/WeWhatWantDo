@@ -9,7 +9,7 @@ export default class Title extends Component{
     render(){
         return(
             
-            <div ClassName="Title">
+            <div id="Title">
                 Randomedia!
             </div>
         )

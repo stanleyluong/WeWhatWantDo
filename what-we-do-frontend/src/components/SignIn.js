@@ -20,7 +20,7 @@ export default class SignIn extends Component{
 
     render(){
         return (
-            <div>
+            <div id="test">
                 <input type="text" value={this.state.input} onChange={this.handleOnChange}/> 
                 <button onClick={this.handleSignIn}>Sign In</button>
             </div>
