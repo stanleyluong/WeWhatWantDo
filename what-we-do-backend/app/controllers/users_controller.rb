@@ -24,7 +24,7 @@ class UsersController < ApplicationController
             @user.save
             render :json => @user
         else
-            byebug
+            render :json => {alert: "Username already exists. Please choose another."}
         end
     end
 

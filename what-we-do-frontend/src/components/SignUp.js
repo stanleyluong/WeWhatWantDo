@@ -6,28 +6,38 @@ export default class SignUp extends Component {
     this.state = { input: "" };
   }
 
-  handleSignUp = () => {
-    let username = this.state.input;
-    this.props.login(username);
-    fetch(this.props.BackendURL + "/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        username: username
-      })
-    }).then(() => {
-      this.props.login(username);
-    });
-  };
+    responseCheck = response => {
+        if (!!response.alert){
+            alert(response.alert)
+        } else {
+            this.props.login(this.state.input)
+            
+        }
+    }
 
-  handleOnChange = e => {
-    this.setState({
-      input: e.target.value
-    });
-  };
+    handleSignUp = () => {
+        let username = this.state.input
+        fetch(this.props.BackendURL+'/users',{
+            method: 'POST',
+            headers: {
+                "Content-Type":"application/json",
+                "Accept":"application/json"
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        })
+        //make another function call it from .then 
+        .then(response => response.json())
+        .then(response => this.responseCheck(response))
+        
+    }
+          
+    handleOnChange = (e) => {
+        this.setState({
+            input: e.target.value
+        })
+    } 
 
   render() {
     return (
