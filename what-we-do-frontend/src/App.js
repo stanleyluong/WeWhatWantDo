@@ -6,6 +6,7 @@ import UserNameBar from './components/usernameBar'
 import GroupContainer from './containers/GroupContainer'
 import ContentContainer from './containers/ContentContainer'
 import Navbar from './components/Navbar'
+import LoginContainer from './containers/LoginContainer'
 
 class App extends Component{
   constructor(){
@@ -59,11 +60,12 @@ class App extends Component{
           <Navbar/>
         </Route>
 
-        <Route path='/signin' render={() => <UserNameBar BackendURL={this.props.BackendURL} onLogIn={this.logIn}/>} />
+        <Route path='/signin' render={() => <LoginContainer BackendURL={this.props.BackendURL} onLogIn={this.logIn} currentUser={this.state.currentUser}/>} />
 
         <Route path='/user/content'>
           {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <Redirect to={`/signin`}/>}
         </Route>
+
 
         <Route path='/user/groups'>
           {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <Redirect to={`/signin`}/>}

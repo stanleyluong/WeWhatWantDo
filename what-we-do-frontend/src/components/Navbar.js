@@ -5,8 +5,9 @@ export default class Navbar extends Component{
     render(){
         return (
         <div>
-            <Link to='/user/groups'>Groups</Link>
-            <Link to='/user/content'>My Content</Link>
+            <p><Link to='/user/groups'>Groups </Link>
+              |
+            <Link to='/user/content'> My Content</Link></p>
         </div>
         )
     }
