@@ -7,6 +7,7 @@ import GroupContainer from './containers/GroupContainer'
 import ContentContainer from './containers/ContentContainer'
 import Navbar from './components/Navbar'
 import LoginContainer from './containers/LoginContainer'
+import Title from './components/Title';
 
 class App extends Component{
   constructor(){
@@ -54,7 +55,6 @@ class App extends Component{
         currentUser: null
     })
   }
-
   render() {
     
     return (
@@ -68,6 +68,7 @@ class App extends Component{
         </Route>
 
         <Route path='/signin'>
+          <Title/>
           <LoginContainer 
             BackendURL={this.props.BackendURL} 
             onLogIn={this.logIn} 
@@ -76,7 +77,7 @@ class App extends Component{
         </Route>
         
 
-        <Route path='/user'>
+        <Route path='/user/content'>
           {!!this.state.currentUser? 
             <ContentContainer 
             /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> 
@@ -84,7 +85,7 @@ class App extends Component{
             <p>Who dares disturb?</p>}
         </Route>
 
-        <Route path='/user'>
+        <Route path='/user/groups'>
           {!!this.state.currentUser? 
           <GroupContainer 
           /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> 

@@ -9,9 +9,9 @@ class GroupSelector extends Component {
   listGroups = () => {
 
     return this.props.groups.map((group, index) => {
-      return <li key={index}>
+      return <div key={index}>
         <button onClick={this.handleClick} key={group.title} className="groups" value={JSON.stringify(group)}> {group.title} </button>
-        </li>
+        </div>
     })
   }
 
@@ -46,9 +46,8 @@ class GroupSelector extends Component {
 
   render() {
     return (
-      <div >
-        <h3>GroupSelector</h3>
-        {this.listGroups()}
+      <div id='groupSelector'>
+        <div id='groups'>{this.listGroups()}</div>
         <form onSubmit={this.onAddGroup}>
           <label>New Group</label>
           <input type='text' onChange={(e)=>{this.setState({groupName: e.target.value})}} value={this.state.groupName}/>

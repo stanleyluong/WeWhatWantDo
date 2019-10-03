@@ -37,7 +37,7 @@ export default class SuggestionForm extends Component {
           allSuggestions: data,
           suggestion: data.slice(
             this.state.sliceCounter,
-            this.state.sliceCounter + 4
+            this.state.sliceCounter + 3
           )
         });
       })
@@ -51,7 +51,7 @@ export default class SuggestionForm extends Component {
   generateSuggestionCards = () => {
     if (this.state.suggestion.length !== 0) {
       return this.state.allSuggestions
-        .slice(this.state.sliceCounter - 1, this.state.sliceCounter + 3)
+        .slice(this.state.sliceCounter - 1, this.state.sliceCounter + 2)
         .map((item, index) => (
           <div key={index}>
             <SuggestionCard itemData={item} />
@@ -80,7 +80,7 @@ export default class SuggestionForm extends Component {
 
   incrementSliceCounter = () => {
     this.setState(prevState => {
-      return { sliceCounter: prevState.sliceCounter + 4 };
+      return { sliceCounter: prevState.sliceCounter + 3 };
     });
   };
 
