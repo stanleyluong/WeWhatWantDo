@@ -61,14 +61,27 @@ class App extends Component{
     <div className="App">
       <Router history={this.state.history}>
         {this.handleRedirect()}
-        <Route path='/'  render={() => <LoginContainer BackendURL={this.props.BackendURL} onLogIn={this.logIn} currentUser={this.state.currentUser} handleSignOut={this.handleSignOut}/>} />
+        <Route path='/'  render={() => 
+          <LoginContainer 
+            BackendURL={this.props.BackendURL} 
+            onLogIn={this.logIn} 
+            currentUser={this.state.currentUser} 
+            handleSignOut={this.handleSignOut}/>} />
 
         <Route path='/user'>
-          {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
+          {!!this.state.currentUser? 
+            <ContentContainer 
+            /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> 
+            : 
+            <p>Who dares disturb?</p>}
         </Route>
 
         <Route path='/user'>
-          {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>SUFFER FOOLS</p>}
+          {!!this.state.currentUser? 
+          <GroupContainer 
+          /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> 
+          : 
+          <p>SUFFER FOOLS</p>}
         </Route>
       </Router>
     </div>

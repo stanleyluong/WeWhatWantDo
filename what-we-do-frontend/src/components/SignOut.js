@@ -12,6 +12,7 @@ export default class SignOut extends Component{
     render(){
         return (
             <button onClick={this.handleOnClick}>Sign Out</button>
+            // <div>{Date.now}</div>
         )
     }
 }
