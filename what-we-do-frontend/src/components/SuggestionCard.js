@@ -43,7 +43,7 @@ class SuggestionCard extends Component {
       </Card.Description>
     ) : (
       <Card.Description>
-        <button onClick={() => this.handleClick()}>See More...</button>
+        <button className="moreInfoBtn"onClick={() => this.handleClick()}><span>See More...</span></button>
       </Card.Description>
     );
   };
