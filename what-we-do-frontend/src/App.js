@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 // import logo from './logo.svg';
 import './App.css';
-import UserNameBar from './components/usernameBar'
 import GroupContainer from './containers/GroupContainer'
 import ContentContainer from './containers/ContentContainer'
 import Navbar from './components/Navbar'
