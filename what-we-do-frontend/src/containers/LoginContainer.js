@@ -9,13 +9,13 @@ export default class SigninSignup extends Component {
    userCheck = () => {
        if (this.props.currentUser === null){
             return (
-                <div>
+                <div><p>p</p>
                     <SignUp login={this.props.onLogIn} BackendURL={this.props.BackendURL}/>
                     <SignIn login={this.props.onLogIn}/>
                 </div>
             )
        } else {
-           return <div><SignOut /></div>
+           return <div><SignOut currentUser={this.props.currentUser} handleSignOut={this.props.handleSignOut}/></div>
        }
    }
 

@@ -5,13 +5,13 @@ export default class SignOut extends Component{
         super(props)
     }
 
-    handleSignOut = () => {
-
-    }
+   handleOnClick = () => {
+       this.props.handleSignOut()
+   }
 
     render(){
         return (
-            <p></p>
+            <button onClick={this.handleOnClick}>Sign Out</button>
         )
     }
 }

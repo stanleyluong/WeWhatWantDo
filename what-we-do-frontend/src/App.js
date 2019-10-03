@@ -48,6 +48,12 @@ class App extends Component{
     }
   }
 
+  handleSignOut = () => {
+    this.setState({
+        currentUser: null
+    })
+  }
+
   render() {
     console.log('current user', this.state.currentUser)
     
@@ -55,7 +61,7 @@ class App extends Component{
     <div className="App">
       <Router history={this.state.history}>
         {this.handleRedirect()}
-        <Route path='/' exact render={() => <LoginContainer BackendURL={this.props.BackendURL} onLogIn={this.logIn} currentUser={this.state.currentUser}/>} />
+        <Route path='/'  render={() => <LoginContainer BackendURL={this.props.BackendURL} onLogIn={this.logIn} currentUser={this.state.currentUser} handleSignOut={this.handleSignOut}/>} />
 
         <Route path='/user'>
           {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <p>Who dares disturb?</p>}
