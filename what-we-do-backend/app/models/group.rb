@@ -12,7 +12,7 @@ class Group < ApplicationRecord
         if (type == nil || type == ['null'])
             type = ['all']
         end
-        byebug
+        # byebug
         #sample content from each user and throw it into function
         #run fetch and return output of fetch statement
         query = []
@@ -20,7 +20,7 @@ class Group < ApplicationRecord
         self.users.each do |user|
             query << user.generateSample(type)
         end
-        byebug  
+        # byebug  
         query = query.flatten
         fetchResults = fetch(query,type)
         return fetchResults

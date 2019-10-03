@@ -32,7 +32,7 @@ export default class SuggestionForm extends Component {
     )
       .then(res => res.json())
       .then(async data => {
-        console.log(data);
+        console.log("data", data);
         this.setState({
           allSuggestions: data,
           suggestion: data.slice(
@@ -50,11 +50,13 @@ export default class SuggestionForm extends Component {
 
   generateSuggestionCards = () => {
     if (this.state.suggestion.length !== 0) {
-      return this.state.allSuggestions.slice((this.state.sliceCounter - 1), (this.state.sliceCounter + 3)).map((item, index) => (
-        <div key={index}>
-          <SuggestionCard itemData={item} />
-        </div>
-      ));
+      return this.state.allSuggestions
+        .slice(this.state.sliceCounter - 1, this.state.sliceCounter + 3)
+        .map((item, index) => (
+          <div key={index}>
+            <SuggestionCard itemData={item} />
+          </div>
+        ));
     }
   };
 
@@ -70,17 +72,17 @@ export default class SuggestionForm extends Component {
         </Form.Button>
       );
     } else {
-        this.setState({
-            sliceCounter: 1
-        })
+      this.setState({
+        sliceCounter: 1
+      });
     }
   };
 
   incrementSliceCounter = () => {
-      this.setState(prevState =>{
-          return {sliceCounter: (prevState.sliceCounter +4)}
-      })
-  }
+    this.setState(prevState => {
+      return { sliceCounter: prevState.sliceCounter + 4 };
+    });
+  };
 
   render() {
     const { value } = this.state;
@@ -89,14 +91,11 @@ export default class SuggestionForm extends Component {
         <label>Media type:</label>
 
         <Form>
-
-
-    
           <Form.Group inline widths="equal">
             <Form.Checkbox
-              label='Movies'
-              value='movies'
-              checked={this.state.type === 'movies'}
+              label="Movies"
+              value="movies"
+              checked={this.state.type === "movies"}
               onChange={this.handleChange}
             />
             <Form.Checkbox
@@ -133,7 +132,9 @@ export default class SuggestionForm extends Component {
           {this.generateSuggestionButton()}
         </Form>
 
-        <div className="suggestionContainer">{this.generateSuggestionCards()}</div>
+        <div className="suggestionContainer">
+          {this.generateSuggestionCards()}
+        </div>
       </div>
     );
   }

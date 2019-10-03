@@ -46,7 +46,7 @@ class GroupSelector extends Component {
 
   render() {
     return (
-      <div>
+      <div >
         <h3>GroupSelector</h3>
         {this.listGroups()}
         <form onSubmit={this.onAddGroup}>

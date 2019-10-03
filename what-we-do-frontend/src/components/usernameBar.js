@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Title from './Title'
 
 
 export default class UserNameBar extends Component{
@@ -14,12 +15,17 @@ export default class UserNameBar extends Component{
 
     render(){
         return(
-            <form onSubmit={this.handleLogIn}>
+            <div id="topLevel">
+                <div id="title">
+            <Title />
+            </div>
+            <form id="logInForm"onSubmit={this.handleLogIn}>
                 <label>User Name</label>
                 <input type='text' value={this.state.username} 
                     onChange={e=>this.setState({username: e.target.value})}/>
                 <button type='submit'>Submit</button>
             </form>
+            </div>
         )
     }
 }

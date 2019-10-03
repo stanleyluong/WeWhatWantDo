@@ -52,6 +52,7 @@ class App extends Component{
     
     return (
     <div className="App">
+      <div id="topLevel">
       <Router history={this.state.history}>
         {this.handleRedirect()}
         
@@ -69,6 +70,7 @@ class App extends Component{
           {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <Redirect to={`/signin`}/>}
         </Route>
       </Router>
+    </div>
     </div>
     )
   }
