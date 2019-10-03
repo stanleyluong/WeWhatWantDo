@@ -3,7 +3,7 @@ class User < ApplicationRecord
     has_many :contents, through: :likes
     has_many :invites
     has_many :groups, through: :invites
-
+    validates :username, presence: true, uniqueness: true
     #give method to return sample so dont hit same thing multiple times. 
 
     def User.searchByName(string)
