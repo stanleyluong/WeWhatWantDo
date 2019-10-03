@@ -49,6 +49,12 @@ class App extends Component{
     }
   }
 
+  handleSignOut = () => {
+    this.setState({
+        currentUser: null
+    })
+  }
+
   render() {
     
     return (
@@ -61,15 +67,29 @@ class App extends Component{
           <Navbar/>
         </Route>
 
-        <Route path='/signin' render={() => <LoginContainer BackendURL={this.props.BackendURL} onLogIn={this.logIn} currentUser={this.state.currentUser}/>} />
+        <Route path='/signin'>
+          <LoginContainer 
+            BackendURL={this.props.BackendURL} 
+            onLogIn={this.logIn} 
+            currentUser={this.state.currentUser} 
+            handleSignOut={this.handleSignOut}/>
+        </Route>
+        
 
-        <Route path='/user/content'>
-          {!!this.state.currentUser? <ContentContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <Redirect to={`/signin`}/>}
+        <Route path='/user'>
+          {!!this.state.currentUser? 
+            <ContentContainer 
+            /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> 
+            : 
+            <p>Who dares disturb?</p>}
         </Route>
 
-
-        <Route path='/user/groups'>
-          {!!this.state.currentUser? <GroupContainer /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> : <Redirect to={`/signin`}/>}
+        <Route path='/user'>
+          {!!this.state.currentUser? 
+          <GroupContainer 
+          /* userGroups={this.state.currentUser.groups} */ BackendURL={this.props.BackendURL}/> 
+          : 
+          <p>SUFFER FOOLS</p>}
         </Route>
       </Router>
     </div>
