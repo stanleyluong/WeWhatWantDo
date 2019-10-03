@@ -74,13 +74,16 @@ body {
 #navBar{
   grid-column-start: 1;
   grid-column-end:6;
-  grid-row-start:;
-  
-  
+  grid-row-start:
 }
 
 #groupSelector{
   grid-column-start:3;
+}
+
+#selectGroup{
+  font-family: 'Permanent Marker', cursive;
+  font-size: 20px
 }
 
 
