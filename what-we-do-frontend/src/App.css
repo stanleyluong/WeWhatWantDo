@@ -21,6 +21,7 @@
   color: #09d3ac;
 }
 
+
 .suggestionContainer {
   display: flex;
   flex-direction: row;
@@ -51,38 +52,95 @@ body {
     'header'
     'content'
     'content'
+    'content'
+    'content'
+    'content'
+    'content'
     'content';
   height:100vh;
   width: 100vw;
 }
 
-#logInForm {
+.container {
   grid-area: content;
   text-align: center;
 }
 
-#title{
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row-start:2;
-  grid-row-end:3;
+#logInForm {
+  text-align: center;
+}
+
+#Title{
+  grid-area: header;
   text-align: center;
   font-size: 80px;
+  padding-bottom: 0;
   font-family: 'Permanent Marker', cursive;
-  
 }
 
 #navBar{
   grid-area: header;
+  height: 50px;
+}
+
+#groupContainer{
+    display: grid;
+    grid-template-areas: 
+    'selector'
+    'viewer';
+  /* background: #FFFFFF */
 }
 
 #groupSelector{
-  grid-column-start:3;
+  gird-area: selector;
+  max-height: 1vh;
+  min-height: 100px;
 }
 
-#selectGroup{
-  font-family: 'Permanent Marker', cursive;
-  font-size: 20px
+#groupViewer{
+  grid-area: viewer;
+  display: grid;
+  grid-template-areas:
+  'sidebar suggestion';
+  /* background: #555555; */
+  min-height: 70vh;
 }
 
+#groupMembers{
+  background: #DD7777;
+  gird-area: sidebar;
+}
 
+#groupSuggestion{
+  gird-area: suggestion;
+  min-height: 50vh;
+}
+
+#groups {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: center;
+}
+#groups > div{
+ box-sizing: border-box;
+ margin-bottom: 10px;
+ margin-left: 2vw;
+}
+
+#button-new{
+ text-align: center;
+ cursor: pointer;
+ font-size:18px;
+ margin: 5px 0 5px 10px;
+ border-radius: 4px;
+ background-color:burlywood;
+ border: none;
+ padding: 4px;
+ width: 100px;
+ height: 45px;
+ border: 1px black;
+ outline: black;
+ transition: all 0.5s;
+ font-family: 'Finger Paint', cursive;
+}

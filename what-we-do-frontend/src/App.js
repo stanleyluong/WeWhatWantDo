@@ -7,6 +7,7 @@ import GroupContainer from './containers/GroupContainer'
 import ContentContainer from './containers/ContentContainer'
 import Navbar from './components/Navbar'
 import LoginContainer from './containers/LoginContainer'
+import Title from './components/Title';
 
 class App extends Component{
   constructor(){
@@ -54,7 +55,6 @@ class App extends Component{
         currentUser: null
     })
   }
-
   render() {
     
     return (
@@ -62,13 +62,20 @@ class App extends Component{
       <div id="topLevel">
       <Router history={this.state.history}>
         {this.handleRedirect()}
+<<<<<<< HEAD
        
+=======
+>>>>>>> a085b2a596dfcdf1dfa0c8a3cbe28d3df712903d
         
         <Route path='/user'>
           <Navbar/>
         </Route>
 
         <Route path='/signin'>
+<<<<<<< HEAD
+=======
+          <Title/>
+>>>>>>> a085b2a596dfcdf1dfa0c8a3cbe28d3df712903d
           <LoginContainer 
             BackendURL={this.props.BackendURL} 
             onLogIn={this.logIn} 
