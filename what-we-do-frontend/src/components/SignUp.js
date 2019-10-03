@@ -18,7 +18,6 @@ export default class SignUp extends Component{
 
     handleSignUp = () => {
         let username = this.state.input
-        this.props.login(username)
         fetch(this.props.BackendURL+'/users',{
             method: 'POST',
             headers: {
