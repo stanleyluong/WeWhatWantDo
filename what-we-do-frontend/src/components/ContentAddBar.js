@@ -28,6 +28,7 @@ export default class ContentAddBar extends Component{
             })
         })
         .then(response => {this.props.onAddContent()})
+        this.setState({content: ''})
     }
 
     render(){

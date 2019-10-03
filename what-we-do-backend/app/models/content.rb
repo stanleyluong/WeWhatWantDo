@@ -56,4 +56,53 @@ class Content < ApplicationRecord
             Content.destroy(contentID)
         end
     end
+
+    def verifyThis(result)
+        # byebug
+        self.verified = true
+        if (result['Type'] == 'unknown')
+            self.problem = true
+            self.save
+            return
+        end
+        
+        if (self.category == '')
+            self.category = result["Type"]
+        end
+
+        self.save
+            #Check for Title Correctness
+
+        if (self.title != result["Name"])
+            preexistingContent = Content.where("TITLE = '#{result['Name']}'")
+            if (preexistingContent.length > 0) 
+                sameCategoryMatch = false
+
+                preexistingContent.each do |content|
+                    if (content.category == self.category)
+                        self.users.each do |user|
+                            content.users << user
+                        end
+                        content.users = content.users.uniq
+                        self.destroy
+                        return
+                    end
+                end
+
+                if (!sameCategoryMatch)
+                    reviseIntoNewContent(result)
+                    return
+                end
+            else
+                reviseIntoNewContent(result)
+                return
+            end
+        end
+    end
+
+    def reviseIntoNewContent(result)
+                newContent = Content.create({title: result['Name'], category: self.category})
+                newContent.users = self.users
+                self.destroy
+    end
 end

@@ -19,11 +19,11 @@ class GroupViewer extends Component {
 
   render() {
     return <div>
-        <h3>GroupViewer</h3>
+        <h3>{this.props.currentGroup.title}</h3>
         <h2>{this.listGroupMembers()}</h2>
-        <SuggestionForm currentGroup={this.props.currentGroup}BackendURL={this.props.BackendURL}/>
-
         <InviteBar BackendURL={this.props.BackendURL} currentGroup={this.props.currentGroup} refreshGroups={this.props.refreshGroups}/>
+        <SuggestionForm currentGroup={this.props.currentGroup}BackendURL={this.props.BackendURL}/>
+        
         {/* <CheckboxToggle /> */}
 
     </div>;
