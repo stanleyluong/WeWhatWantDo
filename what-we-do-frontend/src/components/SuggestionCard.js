@@ -40,7 +40,7 @@ class SuggestionCard extends Component {
         <span id="scroll">{this.props.itemData.wTeaser}</span>
         <br></br>
         <button id="button-new" onClick={() => this.handleClick()}>
-          See Less...
+          Hide
         </button>
       </Card.Description>
     ) : (
@@ -50,7 +50,7 @@ class SuggestionCard extends Component {
           className="moreInfoBtn"
           onClick={() => this.handleClick()}
         >
-          <span>See More...</span>
+          <span>Description</span>
         </button>
       </Card.Description>
     );
