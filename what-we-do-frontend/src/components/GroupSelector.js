@@ -51,7 +51,7 @@ class GroupSelector extends Component {
       <div id='groupSelector'>
         <div id='groups'>{this.listGroups()}</div>
         <form onSubmit={this.onAddGroup}>
-          <label>New Group</label>
+          <label>Create New Group</label>
           <input
             type="text"
             onChange={e => {

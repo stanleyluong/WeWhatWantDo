@@ -16,7 +16,6 @@ class App extends Component{
   }
 
   logIn = userName => {
-    debugger
     console.log("backend url", this.props.BackendURL)
     console.log("full url", this.props.BackendURL+'/login')
     fetch(this.props.BackendURL+'/login', {

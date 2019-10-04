@@ -62,7 +62,7 @@ class GroupContainer extends Component{
         return(
             <div id="groupContainer" className='container'>
                 <GroupSelector currentGroup={this.state.allGroups[this.state.currentGroup]} onSelectGroup={this.setCurrentGroup} groups={this.state.allGroups} onAddGroup={this.onAddGroup} BackendURL={this.props.BackendURL}/>
-                {this.state.currentGroup !== null? <GroupViewer BackendURL={this.props.BackendURL} currentGroup={this.state.allGroups[this.state.currentGroup]} refreshGroups={this.getGroups}/> : <h5>Select a group</h5>}
+                {this.state.currentGroup !== null? <GroupViewer BackendURL={this.props.BackendURL} currentGroup={this.state.allGroups[this.state.currentGroup]} refreshGroups={this.getGroups}/> : <h2 id="initSelect">Select a Group</h2>}
             </div>
         )
     }

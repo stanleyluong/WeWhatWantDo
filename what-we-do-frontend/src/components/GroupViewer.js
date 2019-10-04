@@ -10,7 +10,7 @@ class GroupViewer extends Component {
     // debugger
 
     return this.props.currentGroup.users.map(member => {
-      return <li onClick={this.handleClick} className="groups" value={JSON.stringify(member)} key={member.username}>{member.username}
+      return <li id="groupMembers" onClick={this.handleClick} className="groups" value={JSON.stringify(member)} key={member.username}>{member.username}
         </li>
     })
     }
@@ -21,12 +21,14 @@ class GroupViewer extends Component {
     return (
     <div id='groupViewer'>
         <div id='groupMembers'>
-          <h4>Users</h4>
+          <h2>Current Group</h2>
+          <h3>{this.props.currentGroup.title}</h3>
+          <h4>Group Members</h4>
           <p>{this.listGroupMembers()}</p>
           <InviteBar BackendURL={this.props.BackendURL} currentGroup={this.props.currentGroup} refreshGroups={this.props.refreshGroups}/>
         </div>
         <div id='groupSuggestion'>
-          <h3>{this.props.currentGroup.title}</h3>
+          
           <SuggestionForm currentGroup={this.props.currentGroup}BackendURL={this.props.BackendURL}/>
         </div>
         {/* <CheckboxToggle /> */}

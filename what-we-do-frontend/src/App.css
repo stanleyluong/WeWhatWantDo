@@ -227,3 +227,11 @@ body {
   height:100px;
   overflow:scroll;
 }
+
+#initSelect{
+  font-family: 'Lustria', serif;
+}
+
+#groupMembers{
+  list-style: none;
+}
